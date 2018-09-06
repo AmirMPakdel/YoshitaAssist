@@ -14,7 +14,7 @@ export default class TimeLineTopActivities extends React.Component {
   };
   render() {
     let topActivities = this.state.topActivities.map((activity, index) => (
-      <Wrapper key={activity.title}>
+      <Wrapper key={activity.title + activity.time}>
         <View style={styles.tab}>
           <Text style={styles.number}>
             {convertToPersianNumber(activity.time)}

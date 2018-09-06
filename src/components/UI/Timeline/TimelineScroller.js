@@ -20,14 +20,13 @@ export default class TimeLineScroller extends Component {
   }
 
   _onSnapToItemHandler = index => {
-    // console.log(this.state);
+    this.props.onSnapItem(index);
   };
   _renderItem = ({ item, index }) => {
-    return <TimeLineItem score={item.score} dayNumber={item.dayNumber} />;
+    return <TimeLineItem score={item.score} dayNumber={item.date.date()} />;
   };
   _onEndReached = info => {
-    console.log(info);
-    //todo : add the logic for appending the new dates comming from local database
+    this.props.onEndReached();
   };
 
   componentDidMount() {}
@@ -49,7 +48,7 @@ export default class TimeLineScroller extends Component {
           inactiveSlideOpacity={0.3}
           inactiveSlideScale={0.2}
           decelerationRate={3}
-          firstItem={this.state.activeIndex ? this.state.activeIndex : 0}
+          firstItem={this.props.activeIndex ? this.props.activeIndex : 0}
           // the logic behind the filling the time line with new values
           onEndReachedThreshold={0.5}
           onEndReached={this._onEndReached}
