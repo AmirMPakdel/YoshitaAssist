@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/arg_1998/Projects/ReactNativeProjects/YoshitaAssist/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+            "outputFile": "/home/oem/Documents/YoshitaAssist/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "/home/arg_1998/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/89cfa87903fedbb8f2fd42762a9e378c/res/values-port/values-port.xml",
+                    "source": "/home/oem/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/820c23d14a9b793f278e907e79092230/res/values-port/values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

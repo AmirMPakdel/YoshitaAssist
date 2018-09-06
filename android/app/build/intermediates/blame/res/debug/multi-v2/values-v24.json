@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/arg_1998/Projects/ReactNativeProjects/YoshitaAssist/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/oem/Documents/YoshitaAssist/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/arg_1998/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/89cfa87903fedbb8f2fd42762a9e378c/res/values-v24/values-v24.xml",
+                    "source": "/home/oem/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/820c23d14a9b793f278e907e79092230/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/arg_1998/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/11bc55b13e906c501e24b5d69b4f1fe4/res/values-v24/values-v24.xml",
+                    "source": "/home/oem/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/778335d0110363b7f7076ae19da8cbe0/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
