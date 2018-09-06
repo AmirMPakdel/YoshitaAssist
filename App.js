@@ -10,7 +10,6 @@ export default class App extends Component{
     // initializing the realm database
     RealmDB.init();
 
-
   }
 
   render() {

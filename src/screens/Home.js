@@ -11,13 +11,12 @@ export default class Home extends React.Component{
         
         return(
             <ImageBackground style= {styles.bg}source={require('../assets/images/home_bg.png')}>
+            
             <View style={styles.container}>
 
                 <View style={styles.up_con}>
 
                     <View style={styles.header}>
-
-                        <SearchBar/>
 
                     </View>
 
@@ -97,20 +96,22 @@ const styles = StyleSheet.create({
 
         height:'36%',
         width:'96%',
-        justifyContent:'space-between',
+        justifyContent:'center',
         padding:5,
         paddingBottom:15,
     },
 
     header:{
-        height:'15%',
+        height:'35%',
         width:'100%',
+        //backgroundColor: 'blue'
     },
 
     welcome:{
-        height:'50%',
+        height:'60%',
         width:'100%',
         alignItems:'center',
+        //backgroundColor: 'red',
         justifyContent:'space-between',
     },
 
@@ -154,8 +155,8 @@ const styles = StyleSheet.create({
     },
 
     cirlc_con:{
-        height:'45%',
-        width:'26.4%',
+        height:'48%',
+        width:'26.5%',
         elevation:20,
         borderWidth:2,
         borderColor:'rgba(1,1,1,0.2)',

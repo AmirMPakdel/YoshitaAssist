@@ -11,22 +11,18 @@ import TabBar from './TabBar';
 export default TabNavigator = createTabNavigator(
     
     {
-        /*Calendar:{
-            screen:Calendar
-        },*/
+        Map:{
+            screen:Map
+        },
 
         NewEvent:{
             screen:NewEvent
         },
 
-        /*Home:{
+        Home:{
             screen:Home
-        },*/
-        
-        Map:{
-            screen:Map
         },
-
+        
         TimeLine:{
             screen:TimeLine
         }
