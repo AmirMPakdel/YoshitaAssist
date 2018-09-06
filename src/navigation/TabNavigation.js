@@ -11,9 +11,9 @@ import TabBar from './TabBar';
 export default TabNavigator = createTabNavigator(
     
     {
-        Calendar:{
+        /*Calendar:{
             screen:Calendar
-        },
+        },*/
 
         NewEvent:{
             screen:NewEvent

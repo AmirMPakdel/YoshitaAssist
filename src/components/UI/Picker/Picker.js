@@ -30,7 +30,7 @@ export default class Picker extends Component {
         ]}>
         <Text
           style={[
-            { fontSize: 24 },
+            { fontSize: 16},
             this.props.itemTextStyle
           ]}>
           {item.value}

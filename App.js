@@ -17,7 +17,7 @@ export default class App extends Component{
     return (
       
       <View style={{flex:1, backgroundColor: '#f8f8f8'}}>
-      <StatusBar animated={true} barStyle="dark-content" hidden = {true}/>
+      <StatusBar animated={true} barStyle="default" hidden = {false}/>
       <TabNavigation>
 
       </TabNavigation>

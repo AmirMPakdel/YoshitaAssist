@@ -4,10 +4,11 @@ import Colors from '../Colors';
 import  EventTypeButton from '../components/EventTypeButton';
 import EventInput from '../components/EventInput';
 import EventDatePicker from '../components/EventDatePicker';
+import EventSubmit from '../components/EventSubmit';
 
 
-const Height = Dimensions.get('screen').height;
-const Width = Dimensions.get('screen').width;
+const Height = Dimensions.get('window').height;
+const Width = Dimensions.get('window').width;
 
 export default class NewEvent extends React.Component{
     
@@ -41,8 +42,6 @@ export default class NewEvent extends React.Component{
                 </View>
                 <View style={styles.middle_con}>
 
-                    <EventDatePicker/>
-
                 </View>
                 <View style={styles.bottom_con}>
 
@@ -75,8 +74,10 @@ const styles = StyleSheet.create({
 
     header_con:{
 
-        height:Height * 0.38,
+        height:Height * 0.5,
         width:'100%',
+        justifyContent:'center',
+        elevation:10,
         backgroundColor:'red'
 
     },
@@ -84,7 +85,6 @@ const styles = StyleSheet.create({
     header:{
         height:'100%',
         width:'100%',
-        paddingTop:30,
         alignItems:'center',
         backgroundColor:'rgba(167, 72, 214,0.4)'
     },
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
 
     middle_con:{
 
-        height:Height * 0.48,
+        height:Height * 0.3,
         width:'100%',
         elevation: 10,
         borderTopWidth: 3,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 
     bottom_con:{
 
-        height:Height * 0.18,
+        height:Height * 0.15,
         width:'100%',
         backgroundColor:'green'
     },

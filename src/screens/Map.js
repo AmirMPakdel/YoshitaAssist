@@ -1,13 +1,18 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Colors from '../Colors';
+import EventSubmit from '../components/EventSubmit';
+
+
 export default class Map extends React.Component{
 
     render(){
 
         return(
             <View style={styles.container}>
-                <Text style={{fontSize:28}}>Map</Text>
+
+            <EventSubmit/>
+                
             </View>
         )
     }

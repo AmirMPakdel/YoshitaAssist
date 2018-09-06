@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet,Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Picker from './UI/Picker/Picker';
 import {yearsMap, weekNameMap, monthNameMap,
- daysNumberMap, repeatChoice} from '../data/PickersList';
+ daysNumberMap, repeatChoice, minutesMap, hoursMap} from '../data/PickersList';
 import Colors from '../Colors';
 import EventCheckBox from './EventCheckBox';
 
 
-const Height = Dimensions.get('screen').height;
-const Width = Dimensions.get('screen').width;
+const Height = Dimensions.get('window').height;
+const Width = Dimensions.get('window').width;
 
 export default class EventDatePicker extends React.Component{
 
@@ -52,15 +52,35 @@ export default class EventDatePicker extends React.Component{
                 <View style={styles.mid_low_con}>
                     <View style={styles.repeat_con}>
 
-                        <Text style={styles.title1}>تکرار</Text>
+                        <Text style={styles.title2}>تکرار</Text>
 
                         <Picker data={repeatChoice} firstIndex={0} onSnapToItem={()=>{}}
-                                itemTextStyle={{fontSize:20, fontFamily: Colors.font, color:Colors.m_perpel}}
-                                width={Width * 0.25} itemHeight={Height * 0.04}
+                                itemTextStyle={{fontFamily: Colors.font, color:Colors.m_perpel}}
+                                width={Width * 0.2} itemHeight={Height * 0.04}
                                 pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
 
 
-                    </View>  
+                    </View>
+
+                    <View style={styles.time_choose_con}>
+
+                        <Text style={styles.title2}>ساعت رویدادجدید رو وارد کن</Text>
+                    
+                        <View style={styles.time_con}>
+                            <Picker data={minutesMap} firstIndex={0} onSnapToItem={()=>{}}
+                                itemTextStyle={{fontFamily: Colors.font, color:Colors.m_perpel}}
+                                width={Width * 0.16} itemHeight={Height * 0.04}
+                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+
+                            <Text style={styles.title3}>:</Text>
+
+                            <Picker data={hoursMap} firstIndex={0} onSnapToItem={()=>{}}
+                                itemTextStyle={{fontFamily: Colors.font, color:Colors.m_perpel}}
+                                width={Width * 0.16} itemHeight={Height * 0.04}
+                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                        
+                        </View>
+                    </View>
                 </View>
             
             </View>
@@ -90,7 +110,8 @@ const styles = StyleSheet.create({
 
     pickers_con:{
 
-        flex:1,
+        height: '40%',
+        width:'100%',
         paddingHorizontal:1,
         flexDirection:'row',
         justifyContent: 'center',  
@@ -111,9 +132,27 @@ const styles = StyleSheet.create({
     repeat_con:{
 
         height: '100%',
-        width: '36%',
+        width: '26%',
         alignItems: 'center', 
-        backgroundColor: 'gray'
+        backgroundColor: '#ddd'
+    },
+
+    time_choose_con:{
+
+        height: '100%',
+        width: '50%',
+        alignItems: 'center', 
+        backgroundColor: 'white'
+    },
+
+    time_con:{
+
+        height: '60%',
+        width: '100%',
+        flexDirection:'row',
+        alignItems: 'center',
+        justifyContent:'center',
+        backgroundColor: 'white'
     },
 
     title1:{
@@ -121,6 +160,23 @@ const styles = StyleSheet.create({
         fontSize:26,
         color:'rgba(167, 72, 214,1)',
         fontFamily:'sahel',
+        
+    },
+
+    title2:{
+
+        fontSize:16,
+        color:'rgba(167, 72, 214,1)',
+        fontFamily:'sahel',
+        
+    },
+
+    title3:{
+
+        fontSize:40,
+        color:'rgba(167, 72, 214,1)',
+        fontFamily:'sahel',
+        paddingBottom: 10,
         
     },
 })
