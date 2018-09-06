@@ -12,6 +12,7 @@ export default class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <View style={{ flex: 1, backgroundColor: '#f8f8f8' }}>
         <StatusBar
           animated={true}
@@ -20,6 +21,12 @@ export default class App extends Component {
           hidden={false}
           translucent={true}
         />
+=======
+      
+      <View style={{flex:1, backgroundColor: '#f8f8f8'}}>
+      <StatusBar animated={true} barStyle="default" hidden = {false}/>
+      <TabNavigation>
+>>>>>>> ff2e18e3df52c1845507ec8df84a7038650b32c6
 
         <TabNavigation />
       </View>
