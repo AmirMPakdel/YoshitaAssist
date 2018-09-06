@@ -71,6 +71,7 @@ const daysNumberMap = [
     {key:'28', value:'۲۸'},
     {key:'29', value:'۲۸'},
     {key:'30', value:'۳۰'},
+    {key:'31', value:'۳۱'},
 ];
 
 

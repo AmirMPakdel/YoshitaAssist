@@ -1,27 +1,28 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View, StatusBar} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import TabNavigation from './src/navigation/TabNavigation';
 import RealmDB from './src/database/RealmDB';
-export default class App extends Component{
-
-  constructor(props){
+export default class App extends Component {
+  constructor(props) {
     super(props);
 
     // initializing the realm database
     RealmDB.init();
-
   }
 
   render() {
     return (
-      
-      <View style={{flex:1, backgroundColor: '#f8f8f8'}}>
-      <StatusBar animated={true} barStyle="default" hidden = {false}/>
-      <TabNavigation>
+      <View style={{ flex: 1, backgroundColor: '#f8f8f8' }}>
+        <StatusBar
+          animated={true}
+          barStyle="default"
+          backgroundColor="rgba(189, 241, 136, 0)"
+          hidden={false}
+          translucent={true}
+        />
 
-      </TabNavigation>
+        <TabNavigation />
       </View>
     );
   }
 }
-

@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
     "persian-date": "^1.0.5",
     "react": "16.4.1",
     "react-native": "0.56.0",
@@ -36,7 +37,7 @@
   },
   "rnpm": {
     "assets": [
-      "./assets/fonts/"
+      "./src/assets/fonts/"
     ]
   }
 }
