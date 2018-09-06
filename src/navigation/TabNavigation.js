@@ -32,7 +32,7 @@ export default TabNavigator = createTabNavigator(
         }
     },
     {   
-        initialRouteName:'NewEvent',
+        initialRouteName:'TimeLine',
 
         animationEnabled:true,
         
