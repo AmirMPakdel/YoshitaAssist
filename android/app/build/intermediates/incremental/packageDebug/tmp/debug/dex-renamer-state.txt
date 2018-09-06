@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-#Thu Sep 06 19:59:04 IRDT 2018
-base.0=/home/arg_1998/Projects/ReactNativeProjects/YoshitaAssist/android/app/build/intermediates/transforms/dexMerger/debug/0
-=======
-#Thu Sep 06 18:18:48 IRDT 2018
-base.0=/home/oem/Documents/YoshitaAssist/android/app/build/intermediates/transforms/dexMerger/debug/0
->>>>>>> ff2e18e3df52c1845507ec8df84a7038650b32c6
-path.0=classes.dex
-renamed.0=classes.dex
