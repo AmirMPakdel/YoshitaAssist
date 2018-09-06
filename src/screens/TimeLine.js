@@ -1,11 +1,17 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import TimeLineScroller from '../components/UI/Timeline/TimelineScroller';
+import TimeLineTopActivities from '../components/UI/Timeline/TimeLineTopActivities';
 const persianDate = require('persian-date');
 
 export default class TimeLine extends React.Component {
   state = {
-    currentDate: new persianDate().format('dddd D MMMM YYYY')
+    currentDate: new persianDate().format('dddd D MMMM YYYY'),
+    topActivities: [
+      { time: 5, title: 'باشگاه' },
+      { time: 32, title: 'باشگاه' },
+      { time: 10, title: 'باشگاه' }
+    ]
   };
   data = [
     { score: 0, dayNumber: 1 },
@@ -29,9 +35,10 @@ export default class TimeLine extends React.Component {
       <View style={styles.container}>
         <View
           style={{
-            flexGrow: 4,
+            flexGrow: 1,
             backgroundColor: '#6d0d5d',
             width: '100%',
+            justifyContent:'space-evenly',
             alignItems: 'center'
           }}>
           <Text
@@ -47,12 +54,15 @@ export default class TimeLine extends React.Component {
           <Text
             style={{
               fontFamily: 'sahel',
-              padding: 5,
+
               fontSize: 16,
               color: '#fff'
             }}>
             امروز
           </Text>
+          <View style={{ width: '100%', height: 60 }}>
+            <TimeLineTopActivities topActivities={this.state.topActivities} />
+          </View>
         </View>
 
         <View style={{ flexGrow: 1, justifyContent: 'center' }}>

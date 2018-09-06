@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Colors from '../../../Colors';
+import { convertToPersianNumber } from '../../../data/PickersList';
 
 /**
  * props:
@@ -8,40 +9,6 @@ import Colors from '../../../Colors';
  *          dayNumber(Number): ...
  */
 
-const mapPersianNumber = [
-  '۰',
-  '۱',
-  '۲',
-  '۳',
-  '۴',
-  '۵',
-  '۶',
-  '۷',
-  '۸',
-  '۹',
-  '۱۰',
-  '۱۱',
-  '۱۲',
-  '۱۳',
-  '۱۴',
-  '۱۵',
-  '۱۶',
-  '۱۷',
-  '۱۸',
-  '۱۹',
-  '۲۰',
-  '۲۱',
-  '۲۲',
-  '۲۳',
-  '۲۴',
-  '۲۵',
-  '۲۶',
-  '۲۷',
-  '۲۸',
-  '۲۸',
-  '۳۰',
-  '۳۱'
-];
 export default class TimeLineItem extends Component {
   render() {
     const dayColor = Colors[`workHeat_${this.props.score}`];
@@ -64,8 +31,7 @@ export default class TimeLineItem extends Component {
               fontFamily: 'IRANSANS_MEDIUM'
             }
           ]}>
-          {this.props.activeIndex == this.props.index &&
-            mapPersianNumber[+this.props.dayNumber]}
+          {convertToPersianNumber(this.props.dayNumber)}
         </Text>
       </View>
     );

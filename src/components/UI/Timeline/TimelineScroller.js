@@ -16,22 +16,14 @@ export default class TimeLineScroller extends Component {
     super(props);
     console.log(props);
 
-    this.state = { data: props.data, activeIndex: props.activeIndex };
+    this.state = { data: props.data };
   }
 
   _onSnapToItemHandler = index => {
-    this.setState({ activeIndex: index });
     // console.log(this.state);
   };
   _renderItem = ({ item, index }) => {
-    return (
-      <TimeLineItem
-        activeIndex={this.state.activeIndex}
-        index={index}
-        score={item.score}
-        dayNumber={item.dayNumber}
-      />
-    );
+    return <TimeLineItem score={item.score} dayNumber={item.dayNumber} />;
   };
   _onEndReached = info => {
     console.log(info);
