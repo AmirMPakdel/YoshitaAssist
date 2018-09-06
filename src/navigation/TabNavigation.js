@@ -19,9 +19,9 @@ export default TabNavigator = createTabNavigator(
             screen:NewEvent
         },
 
-        Home:{
+        /*Home:{
             screen:Home
-        },
+        },*/
         
         Map:{
             screen:Map
