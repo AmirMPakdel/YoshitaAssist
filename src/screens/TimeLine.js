@@ -3,27 +3,82 @@ import { StyleSheet, View, Text } from 'react-native';
 import TimeLineScroller from '../components/UI/Timeline/TimelineScroller';
 import TimeLineTopActivities from '../components/UI/Timeline/TimeLineTopActivities';
 const PersianDate = require('persian-date');
+import { connect } from 'react-redux';
 import _ from 'lodash';
 
 const PAST_DAYS = 10;
-initDates = () => {
-  let dates = [];
-  for (let i = -PAST_DAYS; i < 0; i++) {
-    dates.push({ score: 0, date: new PersianDate().subtract('days', -i) });
+
+calculateScore = events => {
+  let totalActivityTimeMinute = 0;
+  for (const event of events) {
+    totalActivityTimeMinute += +event.eventDuration;
   }
 
-  dates.push({ score: 0, date: new PersianDate() });
-
-  for (let i = 1; i < 64; i++) {
-    dates.push({ score: 0, date: new PersianDate().add('days', i) });
+  if (totalActivityTimeMinute == 0) {
+    return 0;
+  } else if (totalActivityTimeMinute <= 300) {
+    return 1;
+  } else if (totalActivityTimeMinute <= 480) {
+    return 2;
+  } else {
+    return 3;
   }
-
-  return dates;
 };
 
-export default class TimeLine extends React.Component {
+class TimeLine extends React.Component {
+  // this will fetch th events for a given date and will return a object with Score and Sorted Events
+  _processDateFromDatabase = pDate => {
+    //generate the key to fetch the corresponding events
+    //fetch the events from the mockdatabase provided by redux
+    const key = new PersianDate([
+      pDate.year(),
+      pDate.month(),
+      pDate.date(),
+      0,
+      0,
+      0,
+      0
+    ]).unix();
+    const fetchedEvents = this.props.events[key];
+    if (fetchedEvents) {
+      const score = calculateScore(fetchedEvents);
+      const sortedEvents = _.sortBy(fetchedEvents, e =>
+        e.eventTimeRange.start.unix()
+      );
+
+      return {
+        score: score,
+        date: pDate,
+        events: sortedEvents
+      };
+    } else {
+      // if ther is no esaved event, return immidiatly
+      return {
+        score: 0,
+        date: pDate,
+        events: []
+      };
+    }
+  };
+
+  initDates = () => {
+    let dates = [];
+    for (let i = -PAST_DAYS; i < 0; i++) {
+      dates.push(
+        this._processDateFromDatabase(new PersianDate().subtract('days', -i))
+      );
+    }
+    dates.push(this._processDateFromDatabase(new PersianDate()));
+    for (let i = 1; i < 64; i++) {
+      dates.push(
+        this._processDateFromDatabase(new PersianDate().add('days', i))
+      );
+    }
+    return dates;
+  };
+
   state = {
-    dates: initDates(),
+    dates: this.initDates(),
     selectedDate: new PersianDate(),
     selectedIndex: PAST_DAYS,
     topActivities: [
@@ -129,3 +184,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
+
+const mapStateToProps = newState => ({
+  events: newState.mockReducer
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(TimeLine);
