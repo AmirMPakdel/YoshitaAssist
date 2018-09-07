@@ -1,5 +1,6 @@
 import { onTabChanged } from '../actions';
 import { TAB_CHANGED } from '../actions/ActionTypes';
+import {eventTypeDialog} from './Dialogs';
 
 const initialState = { selectedTab: 'Home' };
 
@@ -12,6 +13,11 @@ export default (NavigationReducer = (oldState = initialState, action) => {
     case TAB_CHANGED:
       clonedState.selectedTab = action.tabName;
       break;
+
+    case "dialog":
+      clonedState.TypeDialog = dialogaction.payload;
+      break;
+
     default:
       break;
   }

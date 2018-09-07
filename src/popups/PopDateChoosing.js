@@ -14,8 +14,47 @@ const Width = Dimensions.get('window').width;
 
 export default class PopDateChoosing extends React.Component{
 
+  constructor(props){
+    super(props);
 
-    render(){
+    this.date = {};
+  }
+
+setDay = (day)=>{
+
+  this.date.day = day;
+}
+
+setMonth = (month)=>{
+
+  this.date.month = month;
+}
+
+setYear = (year)=>{
+
+  this.date.year = year;
+}
+
+getDate =()=>{
+  return this.date;
+}
+
+
+accept = ()=>{
+  //alert(JSON.stringify(this.getDate()));
+  this.props.dis(this.getDate());
+}
+
+render(){
+
+      /*this.state = {
+        date:{
+        year:null,
+        month:null,
+        day:null,
+      }};*/
+
+
 
         return(
 
@@ -30,23 +69,32 @@ export default class PopDateChoosing extends React.Component{
                         <Picker data={yearsMap} firstIndex={0} onSnapToItem={()=>{}}
                                 width={Width * 0.2} itemHeight={Height * 0.06}
                                 itemTextStyle={{fontFamily: Colors.font, color:Colors.m_perpel}}
-                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
+                                onSnapToItem = {(item, index)=>{
+                                this.setYear(item.key)
+                                }}/>
 
                         <Picker data={monthNameMap} firstIndex={0} onSnapToItem={()=>{}}
                                 itemTextStyle={{fontFamily: Colors.font, color:Colors.m_perpel}}
                                 width={Width * 0.3} itemHeight={Height * 0.06}
-                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
+                                onSnapToItem = {(item, index)=>{
+                                  this.setMonth(item.key);
+                                }}/>
 
                         <Picker data={daysNumberMap} firstIndex={0} onSnapToItem={()=>{}}
                                 itemTextStyle={{fontFamily: Colors.font, color:Colors.m_perpel}}
                                 width={Width * 0.1} itemHeight={Height * 0.06}
-                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                                pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
+                                onSnapToItem = {(item, index)=>{
+                                  this.setDay(item.key);
+                                }}/>
                     </View>
 
                     <View style={styles.footer}>
 
                       <View style={styles.button}>
-                        <NewEventButton theme="fill" text="ثبت"/>
+                        <NewEventButton onpress={this.accept} theme="fill" text="ثبت"/>
                       </View>
                     </View>
 

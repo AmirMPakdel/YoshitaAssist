@@ -31,7 +31,8 @@ export default class EventItem extends React.Component{
 
 		return(
 
-			<TouchableOpacity style={{flex:1}} onPress={this.props.onpress}>
+			<TouchableOpacity style={{flex:1}}
+			onPress={this.props.onpress}>
 				<View style={styles.container}>
 
 					<Image style={styles.img} source={this.props.src}/>
