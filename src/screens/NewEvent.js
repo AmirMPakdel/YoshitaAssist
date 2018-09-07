@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, ScrollView,Dimensions, ImageBackground, Image, Text} from 'react-native';
+import {StyleSheet, View, ScrollView,Dimensions,KeyboardAvoidingView, ImageBackground, Image, Text} from 'react-native';
 import Colors from '../Colors';
 import EventTypeButton from '../components/EventTypeButton';
 import EventInput from '../components/EventInput';
@@ -81,9 +81,10 @@ export default class NewEvent extends React.Component{
 const styles = StyleSheet.create({
 
     container: {
-      flex: 1,
-      alignItems:'center',
-      backgroundColor: Colors.Whitebackground,
+        height:'100%',
+        width:'100%',
+        alignItems:'center',
+        backgroundColor: Colors.Whitebackground,
     },
 
     bg:{

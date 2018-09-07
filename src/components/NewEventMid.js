@@ -5,7 +5,7 @@ import Picker from './UI/Picker/Picker';
 import {yearsMap, weekNameMap, monthNameMap,
  daysNumberMap, repeatChoice, minutesMap, hoursMap} from '../data/PickersList';
 import {} from 'react-native-popup-dialog'
-
+import NewEventInput from './NewEventInput';
 
 const Height = Dimensions.get('window').height;
 const Width = Dimensions.get('window').width;
@@ -37,7 +37,7 @@ export default class EventInput extends React.Component{
 
                         <Picker data={repeatChoice} firstIndex={0} onSnapToItem={()=>{}}
                                 itemTextStyle={{fontSize:18, paddingBottom: 4, fontFamily: Colors.font, color:Colors.m_perpel}}
-                                width= {Width*0.46} itemHeight={Height*0.05} borderRadius={60}
+                                width= {Width*0.4} itemHeight={Height*0.05} borderRadius={20}
                                 pickerStyle={{borderColor:Colors.m_perpel}}/>
 
                         <Text style={styles.text1}>وضعیت تکرار</Text>
@@ -46,8 +46,16 @@ export default class EventInput extends React.Component{
 
                     <View style={styles.mid_low_con}>
 
-                        <View style={styles.more_bt}>
-                            <NewEventButton text="بیشتر..."/>
+                        <View style={styles.reminder_con}>
+
+                            <View style={styles.reminder_input}>
+                                <NewEventInput ph=" دقیقه قبلش"/>
+                            </View>
+
+                            <View style={styles.reminder_text_con}>
+                                <Text style={styles.text1}>کی یادآوری کنم؟</Text>
+                            </View>
+                            
                         </View>
 
                         <View style={styles.warning_con}>
@@ -114,13 +122,13 @@ const styles = StyleSheet.create({
 
     time_bt:{
 
-        height: '70%',
+        height: '72%',
         width: '45%',
     },
 
     date_bt:{
 
-        height: '70%',
+        height: '72%',
         width: '45%',
     },
 
@@ -141,15 +149,33 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    more_bt:{
+    reminder_con:{
 
-        height: '50%',
+        height: '66%',
         width: '100%',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems: 'center',
+    },
+
+    reminder_input:{
+
+        height: '80%',
+        width: '45%',
+
+    },
+
+    reminder_text_con:{
+
+        height: '100%',
+        width: '45%',
+        justifyContent:'center',
+        alignItems:'center',
     },
 
     warning_con:{
 
-        height: '40%',
+        height: '34%',
         width: '100%',
         justifyContent:'center',
         alignItems:'center',
@@ -171,7 +197,7 @@ const styles = StyleSheet.create({
     text1:{
         
         fontFamily:'sahel',
-        fontSize:20,
+        fontSize:18,
         textAlign: 'center',
         color:Colors.m_perpel,
         marginRight:'8%'
