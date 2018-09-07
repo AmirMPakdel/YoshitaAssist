@@ -10,12 +10,37 @@ import {
 import Colors from '../Colors';
 
 export default class Home extends React.Component {
-  render() {
+  state = {
+    currentImageIndex: 2,
+    images: [
+      require('../assets/images/welcome_01.png'),
+      require('../assets/images/welcome_02.png'),
+      require('../assets/images/welcome_03.png')
+    ]
+  };
 
+  componentDidMount() {
+    this.intervalID = setInterval(() => {
+      this.setState(prevState => {
+        if (prevState.currentImageIndex === 2) {
+          return { currentImageIndex: 0 };
+        } else {
+          return { currentImageIndex: prevState.currentImageIndex + 1 };
+        }
+      });
+    }, 5000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  fadeIn =() =>{
+    
+  }
+  render() {
     return (
       <ImageBackground
-        imageStyle={{ resizeMode: 'cover' }}
-        source={require('../assets/images/welcome_01.png')}
+        imageStyle={{ resizeMode: 'stretch', opacity: 1 }}
+        source={this.state.images[this.state.currentImageIndex]}
         style={styles.container}>
         <View style={{ flexGrow: 2, width: '100%', paddingTop: 30 }}>
           <Text>یک هفته هست ....</Text>
@@ -26,7 +51,7 @@ export default class Home extends React.Component {
             justifyContent: 'flex-end',
             alignItems: 'flex-start',
             width: '100%',
-            padding: 50
+            padding: 30
           }}>
           <TouchableNativeFeedback style={{ overflow: 'hidden' }}>
             <View
