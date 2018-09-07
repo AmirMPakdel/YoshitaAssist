@@ -14,7 +14,7 @@ initDates = () => {
 
   dates.push({ score: 0, date: new PersianDate() });
 
-  for (let i = 1; i < 32; i++) {
+  for (let i = 1; i < 64; i++) {
     dates.push({ score: 0, date: new PersianDate().add('days', i) });
   }
 
@@ -34,24 +34,29 @@ export default class TimeLine extends React.Component {
   };
 
   _onSnapHandler = index => {
-    this.setState(prevState => ({
-      selectedDate: prevState.dates[index].date,
+    this.setState({
+      selectedDate: this.state.dates[index].date,
       selectedIndex: index
-    }));
+    });
   };
+
+  // really dont know why this doesn't work !!!!
   _onEndReachedHandler = () => {
-    let lastDate = this.state.dates[this.state.dates.length - 1].date.clone();
-    console.log(lastDate);
-
-    const clonedDates = _.cloneDeep(this.state.dates);
-    for (i = 0; i < 32; i++) {
-      clonedDates.push({
-        score: 0,
-        date: lastDate.add('days', 1).clone()
-      });
-    }
-
-    this.setState({ dates: clonedDates });
+    // let lastDate = this.state.dates[this.state.dates.length - 1].date.clone();
+    // console.log(lastDate.format('dddd D MMMM YYYY'));
+    // const clonedDates = _.cloneDeep(this.state.dates);
+    // // const clonedDates = [];
+    // for (let i = 0; i < 31; i++) {
+    //   console.log(i);
+    //   clonedDates.push({
+    //     score: 4,
+    //     date: lastDate.add('days', 1).clone()
+    //     // date: new PersianDate()
+    //   });
+    // }
+    // console.log('Cloned State: ', clonedDates);
+    // this.setState({ dates: clonedDates });
+    // console.log('New State: ', this.state.dates);
   };
 
   componentDidMount() {
