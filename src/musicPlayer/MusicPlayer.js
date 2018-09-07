@@ -1,5 +1,5 @@
 // Import the react-native-sound module
-const Sound = require('react-native-sound');
+let Sound = require('react-native-sound');
 //import Sound from 'react-native-sound';
 
 
@@ -7,34 +7,28 @@ export default class MusicPlayer{
 
   constructor(){
 
-  }
+    // Enable playback in silence mode
+    //Sound.setCategory('Playback');
 
-  static play(){
-
-  // Enable playback in silence mode
-  Sound.setCategory('Playback');
-
-    let whoosh = new Sound('harbar.mp3',
+    this.track = new Sound('harbar',
      Sound.MAIN_BUNDLE, (error) => {
       if (error) {
-        console.log('failed to load the sound', error);
+        alert(error)
         return;
       }
     });
 
-      // Play the sound with an onEnd callback
-      whoosh.play((success) => {
-        if (success) {
-          console.log('successfully finished playing');
-        } else {
-          console.log('playback failed due to audio decoding errors');
-          // reset the player to its uninitialized state (android only)
-          // this is the only option to recover after an error occured and use the player again
-          whoosh.reset();
-        }
-      });
-
-    }
+    this.track.play((success) => {
+      if (success) {
+        alert('successfully finished playing');
+      } else {
+        alert('playback failed due to audio decoding errors');
+        // reset the player to its uninitialized state (android only)
+        // this is the only option to recover after an error occured and use the player again
+        this.track.reset();
+      }
+    });
+  }
 }
 
 /*

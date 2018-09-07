@@ -25,16 +25,6 @@ export default class EventsInfoBar extends React.Component{
                     <Text style={styles.title}>خرید</Text>
 
                 </View>
-
-                <View style={styles.line}/>
-                
-                <View style={styles.tab}>
-
-                    <Text style={styles.number}>۵</Text>
-                    <Text style={styles.title}>تلفن و پیام</Text>
-
-                </View>
-
                 <View style={styles.line}/>
 
                 <View style={styles.tab}>
@@ -58,12 +48,12 @@ const styles = StyleSheet.create(
             width:'100%',
             flexDirection:'row',
             alignItems:'center',
-            justifyContent:'center',
+            justifyContent:'space-around',
 
         },
 
         tab:{
-            
+
             height:'100%',
             width:'25%',
             alignItems:'center',
@@ -82,7 +72,7 @@ const styles = StyleSheet.create(
         },
 
         title:{
-            
+
             fontSize:13,
             color:'#FFFFFF',
             fontFamily:'sahel',

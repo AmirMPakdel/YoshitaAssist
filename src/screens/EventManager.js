@@ -3,17 +3,30 @@ import {StyleSheet,TouchableOpacity,Image, View, Text, ImageBackground} from 're
 import Colors from '../Colors';
 import EventsInfoBar from '../components/EventsInfoBar';
 import SearchBar from '../components/SearchBar';
-
+import Sound from 'react-native-sound'
 import MusicPlayer from '../musicPlayer/MusicPlayer';
 
 export default class EventManager extends React.Component{
 
+    constructor(props){
+
+      super(props);
+
+      const link = "https://dl.last.fm/static/1536358714/131211148/0ad21ff38ea65061ac582ace4381264810a522cbe7daa8cb84d88e9cec3cfeb5/Death+Grips+-+Get+Got.mp3"
+      /*const sound = new Sound(link, null, (error) => {
+      if (error) {
+        alert('player error')
+      }});*/
+
+      // play when loaded
+      //sound.play();
+
+    }
+
     render(){
 
-      MusicPlayer.play();
-
         return(
-            <ImageBackground style= {styles.bg}source={require('../assets/images/home_bg.png')}>
+            <ImageBackground style= {styles.bg}source={require('../assets/images/event_mg.png')}>
 
             <View style={styles.container}>
 
@@ -68,7 +81,7 @@ export default class EventManager extends React.Component{
                     <TouchableOpacity style={styles.see_events_con}
                     onPress={()=>{this.props.navigation.navigate('TimeLine')}}>
                     <View>
-                        <Text style={styles.text_big1}>مشاهده برنامه ها و رویداد ها</Text>
+                        <Text style={styles.text5}>مشاهده برنامه ها و رویداد ها</Text>
                     </View>
                     </TouchableOpacity>
 
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
 
     up_con:{
 
-        height:'36%',
+        height:'40%',
         width:'96%',
         justifyContent:'center',
         padding:5,
@@ -105,13 +118,13 @@ const styles = StyleSheet.create({
     },
 
     header:{
-        height:'35%',
+        height:'50%',
         width:'100%',
         //backgroundColor: 'blue'
     },
 
     welcome:{
-        height:'60%',
+        height:'50%',
         width:'100%',
         alignItems:'center',
         //backgroundColor: 'red',
@@ -130,36 +143,37 @@ const styles = StyleSheet.create({
         height:'60%',
         width:'96%',
         padding:5,
+        alignItems:'center',
 
     },
 
     new_event_btn:{
 
         height:'14%',
-        width:'100%',
+        width:'50%',
         justifyContent:'center',
         alignItems:'center',
         paddingBottom:5,
-        borderRadius:10,
+        borderRadius:40,
         marginVertical:5,
-        backgroundColor:Colors.m_perpel_glass2//"rgba(72, 0, 255,0.3)"
+        backgroundColor:Colors.m_perpel//"rgba(72, 0, 255,0.3)"
 
     },
 
     busy_info_con:{
 
         height:'55%',
-        width:'100%',
+        width:'85%',
         alignItems:'center',
         justifyContent:'center',
-        borderRadius:10,
+        borderRadius:40,
         marginVertical:5,
-        backgroundColor:Colors.m_perpel_glass2//"rgba(65, 54, 94, 0.85)"
+        backgroundColor:Colors.gray_glass//"rgba(65, 54, 94, 0.85)"
     },
 
     cirlc_con:{
         height:'48%',
-        width:'26.5%',
+        width:'31.5%',
         elevation:20,
         borderWidth:2,
         borderColor:'rgba(1,1,1,0.2)',
@@ -180,13 +194,21 @@ const styles = StyleSheet.create({
 
     see_events_con:{
 
-        height:'27%',
-        width:'100%',
+        height:'15%',
+        width:'85%',
         justifyContent:'center',
         alignItems:'center',
-        borderRadius:10,
-        marginVertical:5,
-        backgroundColor:Colors.m_perpel_glass2//"rgba(72, 0, 255,0.3)"
+        borderRadius:40,
+        marginVertical:10,
+        paddingBottom:4,
+        backgroundColor:"#ddd"//"rgba(72, 0, 255,0.3)"
+    },
+
+    text5:{
+
+      fontSize:22,
+      color:Colors.m_perpel,
+      fontFamily:'sahel'
     },
 
     text_reg:{

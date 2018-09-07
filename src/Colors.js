@@ -7,6 +7,9 @@ export default (Colors = {
   m_perpel: 'rgb(98, 37, 88)',
   m_perpel_glass:'rgba(133,13,113,0.5)',
   m_perpel_glass2:'rgba(133,13,113,0.55)',
+
+  gray_glass:'rgba(0,0,0,0.3)',
+
   workHeat_0: '#0288D1',
   workHeat_1: '#303F9F',
   workHeat_2: '#EF6C00',

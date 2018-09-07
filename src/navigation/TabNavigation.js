@@ -28,6 +28,7 @@ export default (TabNavigator = createStackNavigator(
   },
   {
     headerMode: 'none',
+
     initialRouteName: 'Home',
 
     animationEnabled: true,
