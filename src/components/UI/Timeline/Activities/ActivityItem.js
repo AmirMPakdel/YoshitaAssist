@@ -53,12 +53,13 @@ export default class ActivityItem extends Component {
             // flexGrow: 1,
             height: 80,
             padding: 10,
-            borderWidth: 1,
-            borderColor: '#000',
+            borderWidth: 2,
+            borderColor: '#6d0d5d',
             borderRadius: 40,
             flexDirection: 'row-reverse',
             alignItems: 'center',
-            width: '80%'
+            width: '80%',
+            backgroundColor: '#fff'
           }}>
           {/* the start and finish time  */}
           <View
@@ -112,6 +113,7 @@ export default class ActivityItem extends Component {
               }}>
               {this.props.title}
             </Text>
+
             <Text
               numberOfLines={2}
               lineBreakMode="clip"
