@@ -3,6 +3,7 @@ package com.yotishaassistant;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import guichaguri.trackplayer.TrackPlayer;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.horcrux.svg.SvgPackage;
 import io.realm.react.RealmReactPackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
             return Arrays.<ReactPackage>asList(
             
             new MainReactPackage(),
+            new TrackPlayer(),
             new LinearGradientPackage(),
             new SvgPackage(),
             new RealmReactPackage(),

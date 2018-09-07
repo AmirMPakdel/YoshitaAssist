@@ -4,14 +4,15 @@ import Colors from '../Colors';
 import EventsInfoBar from '../components/EventsInfoBar';
 import SearchBar from '../components/SearchBar';
 
+import MusicPlayer from '../musicPlayer/MusicPlayer';
+
 export default class Home extends React.Component{
 
     render(){
 
-        
         return(
             <ImageBackground style= {styles.bg}source={require('../assets/images/home_bg.png')}>
-            
+
             <View style={styles.container}>
 
                 <View style={styles.up_con}>
@@ -32,7 +33,7 @@ export default class Home extends React.Component{
                     </View>
 
                 </View>
-                
+
                 <View style={styles.down_con}>
 
                     <View style={styles.new_event_btn}>
@@ -40,15 +41,15 @@ export default class Home extends React.Component{
                         <TouchableOpacity>
 
                             <Text style={styles.text_big1}>رویداد جدید</Text>
-                        
+
                         </TouchableOpacity>
-                            
+
                     </View>
 
                     <View style={styles.busy_info_con}>
 
                         <View style={styles.cirlc_con}>
-                            
+
                             <Text style={styles.text_big2}>متوسط</Text>
 
                         </View>
@@ -56,7 +57,7 @@ export default class Home extends React.Component{
                         <View style={styles.evensInfo_con}>
 
                             <EventsInfoBar/>
-                            
+
                         </View>
 
                     </View>
@@ -67,7 +68,7 @@ export default class Home extends React.Component{
 
 
                     </View>
-                    
+
 
                 </View>
 
