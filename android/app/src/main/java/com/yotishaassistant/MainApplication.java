@@ -3,6 +3,7 @@ package com.yotishaassistant;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.horcrux.svg.SvgPackage;
 import io.realm.react.RealmReactPackage;
@@ -29,8 +30,9 @@ public class MainApplication extends Application implements ReactApplication {
         @Override
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
-            
+
             new MainReactPackage(),
+            new RNSoundPackage(),
             new LinearGradientPackage(),
             new SvgPackage(),
             new RealmReactPackage(),
