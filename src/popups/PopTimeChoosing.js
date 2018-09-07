@@ -14,6 +14,42 @@ const Width = Dimensions.get('window').width;
 
 export default class PopDateChoosing extends React.Component{
 
+  constructor(props){
+    super(props);
+
+    this.time = {};
+    this.duration = {};
+  }
+
+  setTimeH = (hour)=>{
+
+  this.time.hour = hour;
+  }
+
+  setTimeM = (minute)=>{
+
+  this.time.minute = minute;
+  }
+
+  setDurationH = (hour)=>{
+
+  this.duration.hour = hour;
+  }
+
+  setDurationM = (minute)=>{
+
+  this.duration.minute = minute;
+  }
+
+  getTimeAndDuration =()=>{
+    return {time:this.time, duration:this.duration};
+  }
+
+
+  accept = ()=>{
+  //alert(JSON.stringify(this.getTimeAndDuration()));
+  this.props.dis(this.getTimeAndDuration());
+  }
 
     render(){
 
@@ -32,14 +68,20 @@ export default class PopDateChoosing extends React.Component{
                           <Picker data={hoursMap} firstIndex={0} onSnapToItem={()=>{}}
                               itemTextStyle={{fontSize:24, fontFamily: Colors.font, color:Colors.m_perpel}}
                               width={Width * 0.2} itemHeight={Height * 0.07}
-                              pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                              pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
+                              onSnapToItem = {(item, index)=>{
+                                this.setTimeH(item.key);
+                              }}/>
 
                           <Text style={styles.text3}>:</Text>
 
                           <Picker data={minutesMap} firstIndex={0} onSnapToItem={()=>{}}
                               itemTextStyle={{fontSize:24,fontFamily: Colors.font, color:Colors.m_perpel}}
                               width={Width * 0.2} itemHeight={Height * 0.07}
-                              pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                              pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
+                              onSnapToItem = {(item, index)=>{
+                                this.setTimeM(item.key);
+                              }}/>
 
                       </View>
 
@@ -52,14 +94,20 @@ export default class PopDateChoosing extends React.Component{
                         <Picker data={hours2Map} firstIndex={0} onSnapToItem={()=>{}}
                             itemTextStyle={{fontSize:24, fontFamily: Colors.font, color:Colors.m_perpel}}
                             width={Width * 0.2} itemHeight={Height * 0.07}
-                            pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                            pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
+                            onSnapToItem = {(item, index)=>{
+                              this.setDurationH(item.key)
+                            }}/>
 
                         <Text style={styles.text3}>:</Text>
 
                         <Picker data={minutesMap} firstIndex={0} onSnapToItem={()=>{}}
                             itemTextStyle={{fontSize:24,fontFamily: Colors.font, color:Colors.m_perpel}}
                             width={Width * 0.2} itemHeight={Height * 0.07}
-                            pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}/>
+                            pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
+                            onSnapToItem = {(item, index)=>{
+                              this.setDurationM(item.key)
+                            }}/>
 
                       </View>
 
@@ -68,7 +116,7 @@ export default class PopDateChoosing extends React.Component{
                     <View style={styles.footer}>
 
                       <View style={styles.button}>
-                        <NewEventButton theme="fill" text="ثبت"/>
+                        <NewEventButton onpress={this.accept} theme="fill" text="ثبت"/>
                       </View>
                     </View>
 

@@ -20,12 +20,10 @@ class EventsGridList extends React.Component{
 
 			<View style={styles.container}>
 
-				<ScrollView style={{height: '100%', width: '100%'}}>
-
 					<View style={styles.row}>
 						<View style={styles.item_con}>
 							<EventItem backgroundColor={Colors.hat}
-								onpress = {()=>{this.props.TypeDialog.dismiss()}}
+								onpress = {()=>{this.props.dialog.dismiss()}}
 							 src={require('../assets/icons/hat.png')}/>
 						</View>
 
@@ -63,8 +61,6 @@ class EventsGridList extends React.Component{
 							src={require('../assets/icons/medic.png')}/>
 						</View>
 					</View>
-
-				</ScrollView>
 
 			</View>
 		)

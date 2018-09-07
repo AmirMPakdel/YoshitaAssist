@@ -71,7 +71,7 @@ const daysNumberMap = [
 ];
 
 const repeatChoice = [
-  { key: 'no', value: 'بدون تکرار' },
+  { key: 'noRepeat', value: 'بدون تکرار' },
   { key: 'aday', value: 'یک بار در روز' },
   { key: 'amonth', value: 'یک بار در هفته' },
   { key: 'ayear', value: 'یک بار در سال' }

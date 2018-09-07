@@ -16,6 +16,9 @@ import PopTimeChoosing from '../popups/PopTimeChoosing';
 import PopDateChoosing from '../popups/PopDateChoosing';
 import {connect} from 'react-redux';
 import {eventTypeDialog} from '../store/reducers/Dialogs';
+import EventsGridList from '../components/EventsGridList';
+import EventItem from '../components/EventItem';
+const PersianDate = require('persian-date');
 
 import {yearsMap, weekNameMap, monthNameMap,
  daysNumberMap, repeatChoice, minutesMap, hoursMap} from '../data/PickersList';
@@ -33,6 +36,37 @@ const scaleAnimation = new ScaleAnimation({
 })
 
 class NewEvent extends React.Component{
+
+  showEventTypeDialog=()=>{
+    this.TypeEventDialog.show();
+  }
+
+  dismissEventTypeDialog=()=>{
+    this.TypeEventDialog.dismiss();
+  }
+
+  showTimeDialog=()=>{
+    this.TimeD.show();
+  }
+
+  dismissTimeDialog=(time, duration)=>{
+    this.TimeD.dismiss();
+    this.state.newEvent.time = time;
+    this.state.newEvent.duration = duration;
+  }
+
+  showDateDialog=()=>{
+    this.DateD.show();
+  }
+
+  dismissDateDialog=(date)=>{
+    this.DateD.dismiss();
+    this.state.newEvent.date = date;
+  }
+
+  setRepeat = (repeat)=>{
+    this.state.newEvent.repeat = repeat;
+  }
 
   constructor(props){
     super(props);
@@ -68,31 +102,14 @@ class NewEvent extends React.Component{
         this.state.newEvent.type= type;
       }
 
+      setType = (type)=>{
+        this.state.newEvent.type= type;
+      }
+
         return(
 
             <KeyboardAwareScrollView>
             <View style={styles.container}>
-
-                <PopupDialog dialogAnimation={slideAnimation} width={Width*0.86} height={Height*0.71}
-                ref={(PopupDialog) => {
-                  this.PopupDialog = PopupDialog;
-                  this.props.eventTypeDialog(PopupDialog) }}>
-
-                                <PopEventType dialog={this.PopupDialog} getEventType={getEventType} style={{margin:20}}/>
-                </PopupDialog>
-
-                <PopupDialog dialogAnimation={scaleAnimation} width={Width*0.86} height={Height*0.5}
-                ref={(PopupDialog) => { this.DateD = PopupDialog; }}
-                style={{position:'absolute'}}>
-
-                                <PopDateChoosing style={{margin:20}}/>
-                </PopupDialog>
-
-                <PopupDialog dialogAnimation={scaleAnimation} width={Width*0.8} height={Height*0.78}
-                ref={(PopupDialog) => { this.TimeD = PopupDialog; }}>
-
-                                <PopTimeChoosing style={{margin:20}}/>
-                </PopupDialog>
 
                 <View style={styles.header_con}>
 
@@ -108,14 +125,8 @@ class NewEvent extends React.Component{
                     <View style={styles.button_inputs_con}>
 
                         <View style={styles.button}>
-                            <EventTypeButton onpress={()=>
-                                {
-
-                                this.PopupDialog.show()
-
-                                }
-
-                            } title="نوع رویداد"/>
+                            <EventTypeButton onpress={
+                              this.showEventTypeDialog} title="نوع رویداد"/>
 
                         </View>
 
@@ -150,18 +161,12 @@ class NewEvent extends React.Component{
 
                     <View style={styles2.date_bt}>
                     <NewEventButton theme="fill" text="تاریخ رویداد"
-                    onpress={()=>{
-
-                        this.DateD.show();
-                    }}/>
+                    onpress={this.showDateDialog}/>
                     </View>
 
                     <View style={styles2.time_bt}>
                     <NewEventButton theme="fill" text="ساعت رویداد"
-                    onpress={()=>{
-
-                        this.TimeD.show();
-                    }}/>
+                    onpress={this.showTimeDialog}/>
                     </View>
 
                 </View>
@@ -177,7 +182,7 @@ class NewEvent extends React.Component{
 
                                 onSnapToItem={(item,index)=>{
 
-                                  this.state.newEvent.repeat = item.key;
+                                  this.setRepeat(item.key);
                                 }}/>
 
                         <Text style={styles2.text1}>وضعیت تکرار</Text>
@@ -192,7 +197,7 @@ class NewEvent extends React.Component{
                                 <NewEventInput
                                 onChangeText={(text)=>{
 
-                                  this.state.newEvent.reminder=text;
+                                  this.state.newEvent.reminder_time=text;
                                 }}
                                 ph=" دقیقه قبلش"/>
                             </View>
@@ -222,12 +227,33 @@ class NewEvent extends React.Component{
                     </View>
 
                     <View style={styles2.accept_bt}>
-                    <NewEventButton theme="fill" backgroundColor="gray"
+                    <NewEventButton theme="fill" backgroundColor="#28a837"
                     text="ثبت رویداد"
                     onpress={()=>{
 
-                      alert(JSON.stringify(this.state.newEvent));
-                      //TODO:: save the this.state.newEvent
+
+
+                      const newEvent = this.state.newEvent;
+                      //alert(JSON.stringify(newEvent,null, 2))
+                      const dur = newEvent.time.duration.hour * 60 + newEvent.time.duration.minute;
+                      const start = new PersianDate([newEvent.date.year, newEvent.date.month, newEvent.date.day, newEvent.time.time.hour,newEvent.time.time.minute,0,0]);
+                      const e ={
+                        eventType: newEvent.type,
+                        eventTitle: newEvent.title,
+                        eventDescription: newEvent.extra_info,
+                        eventDuration : dur,
+                        eventTimerange:{
+                           start: start ,
+                           end: start.clone().add('minutes', dur)
+                         },
+                        eventNotes: null,
+                        eventRepeatMode: 0, // just once
+                        eventEarlynotify: start.clone().subtract('minutes', parseInt(newEvent.reminder_time)).second(0).millisecond(0)
+
+                      }
+                      alert(JSON.stringify(e,null, 2))
+                      // this.props.addEvent();
+
                     }}/>
                     </View>
 
@@ -254,15 +280,93 @@ class NewEvent extends React.Component{
                     </View>
                 </View>
 
+
+                <PopupDialog dialogAnimation={slideAnimation} width={Width*0.86} height={Height*0.71}
+                ref={(PopupDialog) => {this.TypeEventDialog = PopupDialog}}>
+
+
+                <View style={styles3.container}>
+
+                    <View style={styles3.title_con}>
+
+                        <Text style={styles3.text1}>نوع رویداد رو مشخص کن</Text>
+                    </View>
+
+                    <View style={styles3.events}>
+                    <View style={styles4.container}>
+
+                        <View style={styles4.row}>
+                          <View style={styles4.item_con}>
+                            <EventItem backgroundColor={Colors.hat}
+                              onpress = {()=>{setType('university'); this.dismissEventTypeDialog()}}
+                             src={require('../assets/icons/hat.png')}/>
+                          </View>
+
+                          <View style= {styles4.item_con}>
+                            <EventItem backgroundColor={Colors.hands}
+                            onpress = {()=>{setType('meeting'); this.dismissEventTypeDialog()}}
+                            src={require('../assets/icons/hands.png')}/>
+                          </View>
+                        </View>
+
+                        <View style={styles4.row}>
+                          <View style={styles4.item_con}>
+                            <EventItem backgroundColor={Colors.arm}
+                            onpress = {()=>{setType('gym'); this.dismissEventTypeDialog()}}
+                            src={require('../assets/icons/arm.png')}/>
+                          </View>
+
+                          <View style= {styles4.item_con}>
+                            <EventItem backgroundColor={Colors.drink}
+                            onpress = {()=>{setType('party'); this.dismissEventTypeDialog()}}
+                            src={require('../assets/icons/drink.png')}/>
+                          </View>
+                        </View>
+
+                        <View style={styles4.row}>
+                          <View style={styles4.item_con}>
+                            <EventItem backgroundColor={Colors.email}
+                            onpress = {()=>{setType('email'); this.dismissEventTypeDialog()}}
+                            src={require('../assets/icons/email.png')}/>
+                          </View>
+
+                          <View style= {styles4.item_con}>
+                            <EventItem backgroundColor={Colors.medic}
+                            onpress = {()=>{setType('doctor'); this.dismissEventTypeDialog()}}
+                            src={require('../assets/icons/medic.png')}/>
+                          </View>
+                        </View>
+
+                    </View>
+                    </View>
+
+                </View>
+                </PopupDialog>
+
+                <PopupDialog dialogAnimation={scaleAnimation} width={Width*0.86} height={Height*0.5}
+                ref={(PopupDialog) => { this.DateD = PopupDialog; }}
+                style={{position:'absolute'}}>
+
+                                <PopDateChoosing dis={this.dismissDateDialog} style={{margin:20}}/>
+                </PopupDialog>
+
+                <PopupDialog dialogAnimation={scaleAnimation} width={Width*0.8} height={Height*0.78}
+                ref={(PopupDialog) => { this.TimeD = PopupDialog; }}>
+
+                                <PopTimeChoosing dis={this.dismissTimeDialog} style={{margin:20}}/>
+                </PopupDialog>
+
             </View>
             </KeyboardAwareScrollView>
         )
     }
 }
 
+import {onAddEvent} from '../store/actions/index';
+
 function mapDispatchToProps(dispatch) {
   return {
-    eventTypeDialog: (dialog) => dispatch(eventTypeDialog(dialog))
+    addEvent: (event, keyDate)=>{dispatch(onAddEvent(event, keyDate))}
   }
 }
 
@@ -471,7 +575,7 @@ const styles = StyleSheet.create({
 
       reminder_con:{
 
-          height: '66%',
+          height: '80%', // '66%'
           width: '100%',
           flexDirection:'row',
           justifyContent:'space-between',
@@ -480,7 +584,7 @@ const styles = StyleSheet.create({
 
       reminder_input:{
 
-          height: '80%',
+          height: '76%',
           width: '45%',
 
       },
@@ -495,7 +599,7 @@ const styles = StyleSheet.create({
 
       warning_con:{
 
-          height: '34%',
+          height: '15%', //34%
           width: '100%',
           justifyContent:'center',
           alignItems:'center',
@@ -528,6 +632,67 @@ const styles = StyleSheet.create({
           fontSize:12,
           textAlign: 'center',
           color:'red',
+          opacity:0,//TODO:: show this if no time and date has been set
       },
 
   });
+
+  const styles3 = StyleSheet.create({
+
+  	container:{
+  		height: '100%',
+  		width: '100%',
+          padding:'5%',
+          alignItems:'center',
+          justifyContent:'center',
+  	},
+
+      title_con:{
+
+          height: '18%',
+          width: '100%',
+          alignItems:'center',
+          justifyContent:'center',
+
+      },
+
+      events:{
+
+          height: '82%',
+          width: '100%',
+      },
+
+      text1:{
+
+          fontFamily: 'sahel',
+          fontSize: 22,
+          color:Colors.m_perpel,
+      },
+  })
+
+  const styles4 = StyleSheet.create({
+
+  	container:{
+  		height: '100%',
+  		width: '100%',
+          padding:'5%',
+          alignItems:'center',
+          justifyContent:'space-around',
+  	},
+
+  	row:{
+
+  		height: 80,
+  		width: '100%',
+  		marginVertical:8,
+  		flexDirection:'row',
+  		justifyContent:'space-around',
+  	},
+
+  	item_con:{
+
+  		height: '100%',
+  		width: '40%',
+
+  	},
+  })
