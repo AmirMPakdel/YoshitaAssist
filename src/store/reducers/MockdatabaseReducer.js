@@ -53,7 +53,7 @@ const initialData = {
       eventEarlyNotify: null // 5 minutes before the start of the event
     },
     {
-      eventType: 'باشگاه',
+      eventType: 'gym',
       eventTitle: 'تمرین فوتبال',
       eventDuration: 490,
       eventTimeRange: {
@@ -88,7 +88,15 @@ export default (MockDatabaseREducer = (oldState = initialData, action) => {
   switch (action.type) {
     case actionTypes.ADD_EVENT:
       let key = action.keyDate;
-      key = new PersianDate([key.year(), key.month(), key.date(), 0, 0, 0, 0]).unix()
+      key = new PersianDate([
+        key.year(),
+        key.month(),
+        key.date(),
+        0,
+        0,
+        0,
+        0
+      ]).unix();
 
       clonedState[key].push({
         eventType: action.event.eventType,

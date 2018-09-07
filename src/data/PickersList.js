@@ -71,11 +71,10 @@ const daysNumberMap = [
 ];
 
 const repeatChoice = [
-
-    {key:'no', value:'بدون تکرار'},
-    {key:'aday', value:'یک بار در روز'},
-    {key:'amonth', value:'یک بار در هفته'},
-    {key:'ayear', value:'یک بار در سال'},
+  { key: 'no', value: 'بدون تکرار' },
+  { key: 'aday', value: 'یک بار در روز' },
+  { key: 'amonth', value: 'یک بار در هفته' },
+  { key: 'ayear', value: 'یک بار در سال' }
 ];
 const convertToPersianNumber = number => {
   return String(number)
@@ -103,7 +102,7 @@ const convertToPersianNumber = number => {
         case '9':
           return '۹';
         default:
-          return '۰';
+          return char;
       }
     })
     .join('');

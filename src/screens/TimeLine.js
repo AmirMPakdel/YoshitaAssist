@@ -5,6 +5,7 @@ import TimeLineTopActivities from '../components/UI/Timeline/TimeLineTopActiviti
 const PersianDate = require('persian-date');
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import Activities from '../components/UI/Timeline/Activities/Activities';
 
 const PAST_DAYS = 10;
 
@@ -96,29 +97,9 @@ class TimeLine extends React.Component {
   };
 
   // really dont know why this doesn't work !!!!
-  _onEndReachedHandler = () => {
-    // let lastDate = this.state.dates[this.state.dates.length - 1].date.clone();
-    // console.log(lastDate.format('dddd D MMMM YYYY'));
-    // const clonedDates = _.cloneDeep(this.state.dates);
-    // // const clonedDates = [];
-    // for (let i = 0; i < 31; i++) {
-    //   console.log(i);
-    //   clonedDates.push({
-    //     score: 4,
-    //     date: lastDate.add('days', 1).clone()
-    //     // date: new PersianDate()
-    //   });
-    // }
-    // console.log('Cloned State: ', clonedDates);
-    // this.setState({ dates: clonedDates });
-    // console.log('New State: ', this.state.dates);
-  };
+  _onEndReachedHandler = () => {};
 
-  componentDidMount() {
-    // for (const iterator of this.state.dates) {
-    //   console.log(iterator.format('dddd D MMMM YYYY'));
-    // }
-  }
+  componentDidMount() {}
 
   render() {
     let message = '';
@@ -134,9 +115,10 @@ class TimeLine extends React.Component {
       <View style={styles.container}>
         <View
           style={{
-            flexGrow: 1,
+            height: 200,
             backgroundColor: '#6d0d5d',
             width: '100%',
+
             justifyContent: 'space-evenly',
             alignItems: 'center'
           }}>
@@ -163,7 +145,7 @@ class TimeLine extends React.Component {
           </View>
         </View>
 
-        <View style={{ flexGrow: 1, justifyContent: 'center' }}>
+        <View style={{ height: 90, justifyContent: 'center' }}>
           <TimeLineScroller
             activeIndex={PAST_DAYS}
             data={this.state.dates}
@@ -171,7 +153,17 @@ class TimeLine extends React.Component {
             onEndReached={this._onEndReachedHandler}
           />
         </View>
-        <View style={{ flexGrow: 8, backgroundColor: '#eee', width: '100%' }} />
+        <View
+          style={{
+            flexGrow: 8,
+            width: '100%',
+            paddingHorizontal: 5,
+            paddingTop: 15
+          }}>
+          <Activities
+            events={this.state.dates[this.state.selectedIndex].events}
+          />
+        </View>
       </View>
     );
   }
