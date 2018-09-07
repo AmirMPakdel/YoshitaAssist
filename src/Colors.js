@@ -11,5 +11,14 @@ export default (Colors = {
   workHeat_1: '#303F9F',
   workHeat_2: '#EF6C00',
   workHeat_3: '#E64A19',
-  workHeat_4: '#D32F2F'
+  workHeat_4: '#D32F2F',
+
+
+
+  hat:'#0097A7',
+  hands:'#388E3C',
+  arm:'#AFB42B',
+  drink:'#7B1FA2',
+  email:'#D32F2F',
+  medic:'#00796B',
 });

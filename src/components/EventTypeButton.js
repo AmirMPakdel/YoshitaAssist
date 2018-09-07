@@ -9,7 +9,7 @@ export default class EventTypeButton extends React.Component{
 
         return(
 
-            <TouchableOpacity style={{flex:1}}>
+            <TouchableOpacity style={{flex:1}} onPress={this.props.onpress}>
             <View style={styles.container}>
 
                 <Text style={styles.text}>{this.props.title}</Text>
