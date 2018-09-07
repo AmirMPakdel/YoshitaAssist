@@ -55,7 +55,7 @@ export default class Picker extends Component {
   }
 
   render() {
-    const height = this.props.itemHeight * 2.8;
+    const height = this.props.itemHeight * 3;
 
     return (
       <View
@@ -64,8 +64,8 @@ export default class Picker extends Component {
             width: this.props.width,
             height: height,
             borderColor: '#e2e2e2',
-            borderWidth: 2.5,
-            borderRadius: 15
+            borderWidth: 1.8,
+            borderRadius: this.props.borderRadius || 15
           },
           this.props.pickerStyle
         ]}>
@@ -83,7 +83,7 @@ export default class Picker extends Component {
           sliderWidth={this.props.width}
           itemHeight={this.props.itemHeight}
           inactiveSlideOpacity={0.5}
-          inactiveSlideScale={0.7}
+          inactiveSlideScale={0.6}
           decelerationRate={3}
         />
       </View>

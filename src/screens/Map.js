@@ -10,8 +10,6 @@ export default class Map extends React.Component{
 
         return(
             <View style={styles.container}>
-
-            <EventSubmit/>
                 
             </View>
         )

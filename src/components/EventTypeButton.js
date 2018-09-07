@@ -1,5 +1,7 @@
 import React from 'react';
 import {View,StyleSheet, Text, TouchableOpacity} from 'react-native';
+import Colors from '../Colors';
+
 
 export default class EventTypeButton extends React.Component{
 
@@ -26,15 +28,15 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         paddingBottom:8,
-        borderRadius:10,
-        backgroundColor:'rgb(167, 72, 214)'
+        borderRadius:40,
+        backgroundColor:"#FFFFFF",
     },
 
     text:{
 
         fontFamily:'sahel',
         fontSize:20,
-        color:"#FFFFFF"
+        color:Colors.m_perpel,
     }
 
 })

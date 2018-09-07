@@ -11,7 +11,7 @@ export default class EventInput extends React.Component{
             <View style={styles.container}>
 
                 <TextInput style={styles.text} 
-                placeholderTextColor="rgba(255,255,255,0.5)" 
+                placeholderTextColor="rgba(255,255,255,0.7)" 
                 placeholder={this.props.ph}></TextInput>
             
             </View>
@@ -27,16 +27,16 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
-        paddingBottom:4,
         borderRadius:40,
-        backgroundColor:'rgba(167, 72, 214, 0.6)'
+        borderWidth: 1.2,
+        borderColor: 'rgba(255,255,255,0.8)',
     },
 
     text:{
         height:'100%',
         width:'100%',
         fontFamily:'sahel',
-        fontSize:16,
+        fontSize:14,
         textAlign: 'center',
         color:"#FFFFFF"
     }

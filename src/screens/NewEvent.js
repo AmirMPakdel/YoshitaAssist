@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView,Dimensions, ImageBackground, Image, Text} from 'react-native';
 import Colors from '../Colors';
-import  EventTypeButton from '../components/EventTypeButton';
+import EventTypeButton from '../components/EventTypeButton';
 import EventInput from '../components/EventInput';
-import EventDatePicker from '../components/EventDatePicker';
+import NewEventMid from '../components/NewEventMid';
 import EventSubmit from '../components/EventSubmit';
 
 
@@ -20,31 +20,57 @@ export default class NewEvent extends React.Component{
 
                 <View style={styles.header_con}>
 
-                <ImageBackground style={styles.bg} source={require('../assets/images/new_event_bg.png')}/>
+                <ImageBackground style={styles.bg} source={require('../assets/images/new_event_bg.png')}>
                 <View style={styles.header}>
 
-                    <Text style={styles.text1}>برنامت رو بچین. من حواسم هست :)</Text>
-                    
-                    <View style={styles.button}>
-                        <EventTypeButton title="نوع رویداد"/>
+                    <View style={styles.title_con}>
+
+                        <Text style={styles.text1}>برنامت رو بچین. من حواسم هست :)</Text>
+
                     </View>
 
-                    <View style={styles.event_name_in}>
-                        <EventInput ph="عنوان رویداد"/>
-                    </View>
+                    <View style={styles.button_inputs_con}>
 
-                    <View style={styles.event_info_in}>
-                        <EventInput ph="توضیحات"/>
+                        <View style={styles.button}>
+                            <EventTypeButton title="نوع رویداد"/>
+                        </View>
+
+                        <View style={styles.event_name_in}>
+                            <EventInput ph="عنوان رویداد"/>
+                        </View>
+
+                        <View style={styles.event_info_in}>
+                            <EventInput ph="توضیحات"/>
+                        </View>
                     </View>
 
                 </View>
-
+                </ImageBackground>
                 </View>
+                
+
+
                 <View style={styles.middle_con}>
-
+                    <NewEventMid/>
                 </View>
+  
+
+
+
+
                 <View style={styles.bottom_con}>
 
+                    <Image style={{position:'absolute', height:Height*0.1, width: Width}} 
+                    source={require('../assets/images/new_event_bg.png')}/>
+                    
+                    <View style={styles.footer}>
+
+                        <View style={styles.footer_condition_con}>
+                            <Text style={styles.footer_condition_text}> متوسط</Text>
+                        </View> 
+                        
+                        <Text style={styles.text3}>وضعیت کلی یکشنبه ۲۳ مرداد ۱۳۹۷</Text>
+                    </View>
                 </View>
 
             </View>
@@ -56,14 +82,8 @@ const styles = StyleSheet.create({
 
     container: {
       flex: 1,
-      justifyContent:'center',
       alignItems:'center',
       backgroundColor: Colors.Whitebackground,
-    },
-
-    scrollView:{
-
-        flex:1
     },
 
     bg:{
@@ -74,66 +94,116 @@ const styles = StyleSheet.create({
 
     header_con:{
 
-        height:Height * 0.5,
+        height:'40%',
         width:'100%',
         justifyContent:'center',
-        elevation:10,
-        backgroundColor:'red'
+        elevation:-20,
+    },
 
+    middle_con:{
+
+        height:'52%',
+        width:'100%',
+        elevation: 20,
+        backgroundColor:'white'
+    },
+
+    bottom_con:{
+        height:'8%',
+        width:'100%',
     },
 
     header:{
         height:'100%',
         width:'100%',
         alignItems:'center',
-        backgroundColor:'rgba(167, 72, 214,0.4)'
+        backgroundColor:Colors.m_perpel_glass,
+    },
+
+    footer:{
+
+        height:'100%',
+        width:'100%',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        backgroundColor:Colors.m_perpel_glass,
+    },
+
+    footer_condition_con:{
+
+        height: '56%',
+        width: '24%',
+        borderColor: '#FFFFFF',
+        borderWidth: 1.2,
+        borderRadius: 20,
+        marginHorizontal: 20,
+        borderRadius: 20,
+        alignItems:'center',
+        justifyContent: 'center',
+        paddingLeft: 2, 
+        paddingBottom: 2,
+    },
+
+    title_con:{
+
+        height: '34%',
+        width:'100%',
+        paddingBottom: 10,
+        justifyContent:'flex-end',
+        alignItems:'center',
+    },
+
+    button_inputs_con:{
+
+        height: '66%',
+        width:'100%',
+        paddingBottom: 10,
+        alignItems:'center',
+        justifyContent: 'space-around',
     },
 
     button:{
 
-        height:'18%',
-        width:'30%',
-        marginTop:16,
-        marginBottom:10,
+        height:'27%',
+        width:'86%',
+        marginVertical:5,
     },
 
     event_name_in:{
 
-        height:'20%',
-        width:'50%',
-        marginTop:12
+        height:'27%',
+        width:'86%',
+        marginVertical:5,
 
     },
 
     event_info_in:{
-        height:'20%',
-        width:'80%',
-        marginVertical:12,
+        height:'27%',
+        width:'86%',
+        marginVertical:5,
 
-    },
-
-    middle_con:{
-
-        height:Height * 0.3,
-        width:'100%',
-        elevation: 10,
-        borderTopWidth: 3,
-        borderTopColor: 'rgba(1,1,1,0.8)',
-        backgroundColor:'white'
-
-    },
-
-    bottom_con:{
-
-        height:Height * 0.15,
-        width:'100%',
-        backgroundColor:'green'
     },
 
     text1:{
         fontFamily:'sahel',
         fontSize:20,
         color:'rgba(255,255,255,0.8)'
+    },
+
+    text3:{
+
+        marginRight: 20,
+        fontFamily:'sahel',
+        fontSize:13,
+        color:'#FFFFFF'
+    },
+
+    footer_condition_text:{
+
+        fontFamily:'sahel',
+        fontSize:12,
+        color:'#FFFFFF'
     }
   
   });

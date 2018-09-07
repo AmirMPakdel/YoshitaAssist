@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         width:'30%',
         marginVertical:3,
         borderRadius:50,
-        backgroundColor:'rgba(72, 0, 255,0.5)'
+        backgroundColor:Colors.m_perpel_glass2//'rgba(72, 0, 255,0.5)'
     },
 
     down_con:{
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         paddingBottom:5,
         borderRadius:10,
         marginVertical:5,
-        backgroundColor:"rgba(72, 0, 255,0.3)"
+        backgroundColor:Colors.m_perpel_glass2//"rgba(72, 0, 255,0.3)"
 
     },
 
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         borderRadius:10,
         marginVertical:5,
-        backgroundColor:"rgba(65, 54, 94, 0.85)"
+        backgroundColor:Colors.m_perpel_glass2//"rgba(65, 54, 94, 0.85)"
     },
 
     cirlc_con:{
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         paddingBottom:8,
-        backgroundColor:Colors.ThirdColor
+        backgroundColor:Colors.workHeat_2//Colors.ThirdColor
     },
 
     evensInfo_con:{
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
         height:'26%',
         width:'90%',
         marginTop:30,
-        borderRadius:5,
+        borderRadius:10,
     },
 
     see_events_con:{
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         borderRadius:10,
         marginVertical:5,
-        backgroundColor:"rgba(72, 0, 255,0.3)"
+        backgroundColor:Colors.m_perpel_glass2//"rgba(72, 0, 255,0.3)"
     },
 
     text_reg:{
