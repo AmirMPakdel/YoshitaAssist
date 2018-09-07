@@ -5,13 +5,16 @@ import {
   Text,
   Image,
   ImageBackground,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  TouchableOpacity
 } from 'react-native';
 import Colors from '../Colors';
+import EventTypeButton from '../components/EventTypeButton';
+import NewEventButton from '../components/NewEventButton';
 
 export default class Home extends React.Component {
   state = {
-    currentImageIndex: 2,
+    currentImageIndex: 0,
     images: [
       require('../assets/images/welcome_01.png'),
       require('../assets/images/welcome_02.png'),
@@ -20,18 +23,18 @@ export default class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.intervalID = setInterval(() => {
-      this.setState(prevState => {
-        if (prevState.currentImageIndex === 2) {
-          return { currentImageIndex: 0 };
-        } else {
-          return { currentImageIndex: prevState.currentImageIndex + 1 };
-        }
-      });
-    }, 5000);
+    // this.intervalID = setInterval(() => {
+    //   this.setState(prevState => {
+    //     if (prevState.currentImageIndex === 2) {
+    //       return { currentImageIndex: 0 };
+    //     } else {
+    //       return { currentImageIndex: prevState.currentImageIndex + 1 };
+    //     }
+    //   });
+    // }, 5000);
   }
   componentWillUnmount() {
-    clearInterval(this.intervalID);
+    // clearInterval(this.intervalID);
   }
   fadeIn = () => {};
   render() {
@@ -40,8 +43,59 @@ export default class Home extends React.Component {
         imageStyle={{ resizeMode: 'stretch', opacity: 1 }}
         source={this.state.images[this.state.currentImageIndex]}
         style={styles.container}>
-        <View style={{ flexGrow: 2, width: '100%', paddingTop: 30 }}>
-          <Text>یک هفته هست ....</Text>
+        <View
+          style={{
+            flexGrow: 2,
+            width: '100%',
+            paddingTop: 30,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 22,
+              marginBottom: 30,
+              textAlign: 'center'
+            }}>
+            یک هفته هست ورزش نکردی
+            {'\n'}
+            امروز عصر نیم ساعت وقت خالی داری {'\n'}
+            تایه نفسی بکشی و قدمی بزنی
+            {'\n'}
+            از دستش نده !!!
+          </Text>
+
+          <View
+            style={{
+              marginVertical: 10,
+              width: '50%',
+              height: 40,
+              borderRadius: 20,
+              borderWidth: 2,
+              borderColor: '#fff'
+            }}>
+            <TouchableOpacity>
+              <View
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                <Text
+                  style={{ color: '#fff', fontFamily: 'sahel', fontSize: 20 }}>
+                  از ساعت ۱۸:۳۰
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{ width: '50%', height: 40, marginVertical: 10 }}>
+            <EventTypeButton
+              title="مدیریت روز"
+              onpress={() => this.props.navigation.navigate('TimeLine')}
+            />
+          </View>
         </View>
         <View
           style={{
