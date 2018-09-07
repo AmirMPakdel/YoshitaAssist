@@ -4,29 +4,64 @@ import NewEventButton from './NewEventButton';
 import Picker from './UI/Picker/Picker';
 import {yearsMap, weekNameMap, monthNameMap,
  daysNumberMap, repeatChoice, minutesMap, hoursMap} from '../data/PickersList';
-import {} from 'react-native-popup-dialog'
 import NewEventInput from './NewEventInput';
+import PopupDialog, { SlideAnimation } from 'react-native-popup-dialog';
+import PopTimeChoosing from '../popups/PopTimeChoosing';
+import PopDateChoosing from '../popups/PopDateChoosing';
 
 const Height = Dimensions.get('window').height;
 const Width = Dimensions.get('window').width;
 
 
+const slideAnimation = new SlideAnimation({
+  slideFrom: 'top',
+  useNativeDriver: true,
+});
+
 export default class EventInput extends React.Component{
 
     render(){
+
+      let DateChoosingD = this.props.DateD;
+      let TimeChoosingD = this.props.TimeD;
+
+      /*if (DateChoosingD === undefined){
+        alert("no");
+      }*/
 
         return(
 
             <View style={styles.container}>
 
+                <PopupDialog dialogAnimation={slideAnimation} width={Width*0.86} height={Height*0.2}
+                ref={(PopupDialog) => { this.DateD = PopupDialog; }}
+                style={{position:'absolute'}}>
+
+                                <PopDateChoosing style={{margin:20}}/>
+                </PopupDialog>
+
+                <PopupDialog dialogAnimation={slideAnimation} width={Width*0.86} height={Height*0.2}
+                ref={(PopupDialog) => { this.TimeD = PopupDialog; }}>
+
+                                <PopTimeChoosing style={{margin:20}}/>
+                </PopupDialog>
+
                 <View style={styles.top_con}>
 
                     <View style={styles.date_bt}>
-                    <NewEventButton theme="fill" text="تاریخ رویداد"/>
+                    <NewEventButton theme="fill" text="تاریخ رویداد"
+                    onpress={()=>{
+
+                        this.DateD.show();
+                    }}/>
                     </View>
 
                     <View style={styles.time_bt}>
-                    <NewEventButton theme="fill" text="ساعت رویداد"/>
+                    <NewEventButton theme="fill" text="ساعت رویداد"
+                    onpress={()=>{
+
+                        this.TimeD.show();
+                    }}/>
                     </View>
 
                 </View>
@@ -41,7 +76,7 @@ export default class EventInput extends React.Component{
                                 pickerStyle={{borderColor:Colors.m_perpel}}/>
 
                         <Text style={styles.text1}>وضعیت تکرار</Text>
-                                
+
                     </View>
 
                     <View style={styles.mid_low_con}>
@@ -55,7 +90,7 @@ export default class EventInput extends React.Component{
                             <View style={styles.reminder_text_con}>
                                 <Text style={styles.text1}>کی یادآوری کنم؟</Text>
                             </View>
-                            
+
                         </View>
 
                         <View style={styles.warning_con}>
@@ -195,7 +230,7 @@ const styles = StyleSheet.create({
     },
 
     text1:{
-        
+
         fontFamily:'sahel',
         fontSize:18,
         textAlign: 'center',
