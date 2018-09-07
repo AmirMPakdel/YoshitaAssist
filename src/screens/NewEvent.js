@@ -275,7 +275,7 @@ class NewEvent extends React.Component {
                         },
                         eventNotes: null,
                         eventRepeatMode: 0, // just once
-                        eventEarlynotify: start
+                        eventEarlyNotify: start
                           .clone()
                           .subtract('minutes', parseInt(newEvent.reminder_time))
                           .second(0)

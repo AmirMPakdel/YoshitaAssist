@@ -127,6 +127,7 @@ export default (MockDatabaseREducer = (oldState = initialData, action) => {
         0,
         0
       ]).unix();
+      console.log('action : ', action);
 
       const finalEvent = {
         eventType: action.event.eventType,
