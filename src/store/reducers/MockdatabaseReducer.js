@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/ActionTypes';
 import _ from 'lodash';
+
 const PersianDate = require('persian-date');
 const EventRepeatMode = {
   justOnce: 0,
@@ -48,14 +49,14 @@ const initialData = {
           .millisecond(0)
       },
       eventNotes: [],
-      eventDescription: 'به صاحب پرژه ایمیل بزن بگو پروژه ترکید',
+      eventDescription: 'به صاحب پروژه ایمیل بزن بگو پروژه ترکید',
       eventRepeatMode: EventRepeatMode.justOnce,
       eventEarlyNotify: null // 5 minutes before the start of the event
     },
     {
       eventType: 'gym',
       eventTitle: 'تمرین فوتبال',
-      eventDuration: 490,
+      eventDuration: 220,
       eventTimeRange: {
         start: dayB
           .clone()
@@ -79,12 +80,41 @@ const initialData = {
         .minute(30)
         .second(0)
         .millisecond(0) // 30 minutes before the start of the event
+    },
+    {
+      eventType: 'party',
+      eventTitle: 'جشن مجردی ممد',
+      eventDuration: 300,
+      eventTimeRange: {
+        start: dayB
+          .clone()
+          .hour(23)
+          .minute(50)
+          .second(0)
+          .millisecond(0),
+        end: dayB
+          .clone()
+          .hour(4)
+          .minute(0)
+          .second(0)
+          .millisecond(0)
+      },
+      eventNotes: [],
+      eventDescription: 'با خودت اون استیک درامز رو ببر',
+      eventRepeatMode: EventRepeatMode.justOnce,
+      eventEarlyNotify: dayB
+        .clone()
+        .hour(15)
+        .minute(30)
+        .second(0)
+        .millisecond(0) // 30 minutes before the start of the event
     }
   ]
 };
 
 export default (MockDatabaseREducer = (oldState = initialData, action) => {
   const clonedState = _.cloneDeep(oldState);
+
   switch (action.type) {
     case actionTypes.ADD_EVENT:
       let key = action.keyDate;
@@ -98,7 +128,7 @@ export default (MockDatabaseREducer = (oldState = initialData, action) => {
         0
       ]).unix();
 
-      clonedState[key].push({
+      const finalEvent = {
         eventType: action.event.eventType,
         eventTitle: action.event.eventTitle,
         eventDuration: action.event.eventDuration,
@@ -119,7 +149,13 @@ export default (MockDatabaseREducer = (oldState = initialData, action) => {
           .clone()
           .second(0)
           .millisecond(0)
-      });
+      };
+
+      if (_.isEmpty(clonedState[key])) {
+        clonedState[key] = [finalEvent];
+      } else {
+        clonedState[key].push(finalEvent);
+      }
 
       break;
 

@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { View, Animated, Dimensions, Text, ScrollView } from 'react-native';
 import { convertToPersianNumber } from '../../../../data/PickersList';
+import { minuteToTime } from '../../../../data/DistanceDate';
 
 export default class FreeTime extends Component {
   render() {
-    const height = this.props.minute * 0.7;
-    const h = parseInt(this.props.minute / 60);
-    const m = parseInt(this.props.minute % 60);
+    let height = this.props.minute * 0.7;
+    if (height < 40) {
+      height = 40;
+    }
+    const { hour, minute } = minuteToTime(this.props.minute);
     let time = '';
 
-    if (h == 0 && m == 0) {
+    if (hour == 0 && minute == 0) {
       time = '';
-    } else if (h == 0 && m > 0) {
-      time = `${convertToPersianNumber(m)} دقیقه وقت آزاد داری`;
-    } else if (h > 0 && m > 0) {
-      time = `${convertToPersianNumber(h)} ساعت و ${convertToPersianNumber(
-        m
+    } else if (hour == 0 && minute > 0) {
+      time = `${convertToPersianNumber(minute)} دقیقه وقت آزاد داری`;
+    } else if (hour > 0 && minute > 0) {
+      time = `${convertToPersianNumber(hour)} ساعت و ${convertToPersianNumber(
+        minute
       )} دقیه وقت آزاد داری`;
     }
 

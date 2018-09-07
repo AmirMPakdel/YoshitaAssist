@@ -115,7 +115,7 @@ class TimeLine extends React.Component {
       <View style={styles.container}>
         <View
           style={{
-            height: 200,
+            height: 160,
             backgroundColor: '#6d0d5d',
             width: '100%',
 
@@ -175,7 +175,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#c9c8c8'
   }
 });
 

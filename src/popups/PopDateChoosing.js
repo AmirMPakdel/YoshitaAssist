@@ -84,7 +84,7 @@ render(){
 
                         <Picker data={daysNumberMap} firstIndex={0} onSnapToItem={()=>{}}
                                 itemTextStyle={{fontFamily: Colors.font, color:Colors.m_perpel}}
-                                width={Width * 0.1} itemHeight={Height * 0.06}
+                                width={Width * 0.14} itemHeight={Height * 0.06}
                                 pickerStyle={{borderColor:Colors.m_perpel, margin:Width * 0.01}}
                                 onSnapToItem = {(item, index)=>{
                                   this.setDay(item.key);

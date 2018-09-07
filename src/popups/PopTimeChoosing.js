@@ -48,7 +48,7 @@ export default class PopDateChoosing extends React.Component{
 
   accept = ()=>{
   //alert(JSON.stringify(this.getTimeAndDuration()));
-  this.props.dis(this.getTimeAndDuration());
+  this.props.dis(this.getTimeAndDuration().time, this.getTimeAndDuration().duration);
   }
 
     render(){

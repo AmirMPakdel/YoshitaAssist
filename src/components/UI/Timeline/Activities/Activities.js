@@ -3,6 +3,7 @@ import { View, Animated, Dimensions, Text, ScrollView } from 'react-native';
 import ActivityItem from './ActivityItem';
 import FreeTime from './FreeTime';
 import { Wrapper } from '../../../../HOC/Wrapper';
+import { dateDistanceToMinute } from '../../../../data/DistanceDate';
 
 export default class Activities extends Component {
   state = {};
@@ -29,10 +30,7 @@ export default class Activities extends Component {
           let timeA = e.eventTimeRange.end;
           let timeB = nextEvent.eventTimeRange.start;
 
-          timeA = timeA.hour() * 60 + timeA.minute();
-          timeB = timeB.hour() * 60 + timeB.minute();
-
-          const deltaTime = timeB - timeA;
+          const deltaTime = dateDistanceToMinute(timeA, timeB);
 
           activities.push(
             <FreeTime key={e.eventType + i + deltaTime} minute={deltaTime} />
