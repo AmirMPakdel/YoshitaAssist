@@ -2,12 +2,19 @@ import React from 'react';
 import {View,StyleSheet, Text,ScrollView, TouchableOpacity, Dimensions} from 'react-native';
 import Colors from '../Colors';
 import EventItem from './EventItem';
+import {connect} from 'react-redux';
 
-export default class EventsGridList extends React.Component{
+class EventsGridList extends React.Component{
 
 
 	render(){
 
+
+		setType = (type)=>{
+
+			this.props.getEventType(type);
+
+		}
 
 		return(
 
@@ -17,31 +24,43 @@ export default class EventsGridList extends React.Component{
 
 					<View style={styles.row}>
 						<View style={styles.item_con}>
-							<EventItem backgroundColor={Colors.hat} src={require('../assets/icons/cake.png')}/>
+							<EventItem backgroundColor={Colors.hat}
+								onpress = {()=>{this.props.TypeDialog.dismiss()}}
+							 src={require('../assets/icons/hat.png')}/>
 						</View>
 
 						<View style= {styles.item_con}>
-							<EventItem backgroundColor={Colors.hands} src={require('../assets/icons/hands.png')}/>
+							<EventItem backgroundColor={Colors.hands}
+							onpress = {setType("meeting")}
+							src={require('../assets/icons/hands.png')}/>
 						</View>
 					</View>
 
 					<View style={styles.row}>
 						<View style={styles.item_con}>
-							<EventItem backgroundColor={Colors.arm} src={require('../assets/icons/arm.png')}/>
+							<EventItem backgroundColor={Colors.arm}
+							onpress = {setType("gym")}
+							src={require('../assets/icons/arm.png')}/>
 						</View>
 
 						<View style= {styles.item_con}>
-							<EventItem backgroundColor={Colors.drink} src={require('../assets/icons/drink.png')}/>
+							<EventItem backgroundColor={Colors.drink}
+							onpress = {setType("party")}
+							src={require('../assets/icons/drink.png')}/>
 						</View>
 					</View>
 
 					<View style={styles.row}>
 						<View style={styles.item_con}>
-							<EventItem backgroundColor={Colors.email} src={require('../assets/icons/email.png')}/>
+							<EventItem backgroundColor={Colors.email}
+							onpress = {setType("email")}
+							src={require('../assets/icons/email.png')}/>
 						</View>
 
 						<View style= {styles.item_con}>
-							<EventItem backgroundColor={Colors.medic} src={require('../assets/icons/medic.png')}/>
+							<EventItem backgroundColor={Colors.medic}
+							onpress = {setType("doctor")}
+							src={require('../assets/icons/medic.png')}/>
 						</View>
 					</View>
 
@@ -52,11 +71,19 @@ export default class EventsGridList extends React.Component{
 	}
 }
 
-const imageList = [
+function mapStateToProps(state) {
+  return {
+    TypeDialog: state.TypeDialog
+  }
+}
 
-	{name:'cake', src:require('../assets/icons/cake.png')},
+function mapDispatchToProps(dispatch) {
+  return {
 
-];
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventsGridList)
 
 
 const styles = StyleSheet.create({

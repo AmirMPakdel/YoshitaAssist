@@ -25,7 +25,7 @@ export default class PopEventType extends React.Component{
                     </View>
 
                     <View style={styles.events}>
-                        <EventsGridList/>
+                        <EventsGridList dialog={this.props.dialog} getEventType = {this.props.getEventType}/>
                     </View>
 
                 </View>

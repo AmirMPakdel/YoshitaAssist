@@ -10,10 +10,11 @@ export default class EventInput extends React.Component{
             <TouchableOpacity style={{flex:1}}>
             <View style={styles.container}>
 
-                <TextInput style={styles.text} 
-                placeholderTextColor="rgba(255,255,255,0.7)" 
+                <TextInput style={styles.text}
+                onChangeText = {this.props.onChangeText}
+                placeholderTextColor="rgba(255,255,255,0.7)"
                 placeholder={this.props.ph}></TextInput>
-            
+
             </View>
             </TouchableOpacity>
         )

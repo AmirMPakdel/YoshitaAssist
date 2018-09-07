@@ -14,10 +14,11 @@ import PopEventType from '../popups/PopEventType';
 import PopupDialog, { SlideAnimation, ScaleAnimation } from 'react-native-popup-dialog';
 import PopTimeChoosing from '../popups/PopTimeChoosing';
 import PopDateChoosing from '../popups/PopDateChoosing';
+import {connect} from 'react-redux';
+import {eventTypeDialog} from '../store/reducers/Dialogs';
 
 import {yearsMap, weekNameMap, monthNameMap,
  daysNumberMap, repeatChoice, minutesMap, hoursMap} from '../data/PickersList';
-
 
 const Height = Dimensions.get('window').height;
 const Width = Dimensions.get('window').width;
@@ -31,19 +32,53 @@ const scaleAnimation = new ScaleAnimation({
   useNativeDriver: true,
 })
 
-export default class NewEvent extends React.Component{
+class NewEvent extends React.Component{
+
+  constructor(props){
+    super(props);
+
+    let newEvent= {
+
+      type:null,
+      title:null,
+      extra_info:null,
+      date:{
+          day:null,
+          month:null,
+          year:null,
+      },
+      time:{
+          hour:null,
+          minute:null,
+      },
+      duration:{
+          hour:null,
+          minute:null,
+      },
+      repeat:null,
+      reminder_time:null
+    }
+
+    this.state = {newEvent};
+  }
 
     render(){
+
+      getEventType = (type)=>{
+        this.state.newEvent.type= type;
+      }
 
         return(
 
             <KeyboardAwareScrollView>
             <View style={styles.container}>
 
-                <PopupDialog dialogAnimation={slideAnimation} width={Width*0.86} height={Height*0.72}
-                ref={(PopupDialog) => { this.PopupDialog = PopupDialog; }}>
+                <PopupDialog dialogAnimation={slideAnimation} width={Width*0.86} height={Height*0.71}
+                ref={(PopupDialog) => {
+                  this.PopupDialog = PopupDialog;
+                  this.props.eventTypeDialog(PopupDialog) }}>
 
-                                <PopEventType style={{margin:20}}/>
+                                <PopEventType dialog={this.PopupDialog} getEventType={getEventType} style={{margin:20}}/>
                 </PopupDialog>
 
                 <PopupDialog dialogAnimation={scaleAnimation} width={Width*0.86} height={Height*0.5}
@@ -85,11 +120,19 @@ export default class NewEvent extends React.Component{
                         </View>
 
                         <View style={styles.event_name_in}>
-                            <EventInput ph="عنوان رویداد"/>
+                            <EventInput
+                            onChangeText={(text)=>{
+                              this.state.newEvent.title = text;
+                            }}
+                            ph="عنوان رویداد"/>
                         </View>
 
                         <View style={styles.event_info_in}>
-                            <EventInput ph="جزییات"/>
+                            <EventInput
+                            onChangeText = {(text)=>{
+                              this.state.newEvent.extra_info = text;
+                            }}
+                            ph="جزییات"/>
                         </View>
                     </View>
 
@@ -130,7 +173,12 @@ export default class NewEvent extends React.Component{
                         <Picker data={repeatChoice} firstIndex={0} onSnapToItem={()=>{}}
                                 itemTextStyle={{fontSize:18, paddingBottom: 4, fontFamily: Colors.font, color:Colors.m_perpel}}
                                 width= {Width*0.4} itemHeight={Height*0.05} borderRadius={20}
-                                pickerStyle={{borderColor:Colors.m_perpel}}/>
+                                pickerStyle={{borderColor:Colors.m_perpel}}
+
+                                onSnapToItem={(item,index)=>{
+
+                                  this.state.newEvent.repeat = item.key;
+                                }}/>
 
                         <Text style={styles2.text1}>وضعیت تکرار</Text>
 
@@ -141,7 +189,12 @@ export default class NewEvent extends React.Component{
                         <View style={styles2.reminder_con}>
 
                             <View style={styles2.reminder_input}>
-                                <NewEventInput ph=" دقیقه قبلش"/>
+                                <NewEventInput
+                                onChangeText={(text)=>{
+
+                                  this.state.newEvent.reminder=text;
+                                }}
+                                ph=" دقیقه قبلش"/>
                             </View>
 
                             <View style={styles2.reminder_text_con}>
@@ -161,11 +214,21 @@ export default class NewEvent extends React.Component{
                 <View style={styles2.low_con}>
 
                     <View style={styles2.cancel_bt}>
-                    <NewEventButton text="انصراف"/>
+                    <NewEventButton text="انصراف"
+                    onpress={()=>{
+
+                      //TODO:: go out
+                    }}/>
                     </View>
 
                     <View style={styles2.accept_bt}>
-                    <NewEventButton theme="fill" backgroundColor="gray" text="ثبت رویداد"/>
+                    <NewEventButton theme="fill" backgroundColor="gray"
+                    text="ثبت رویداد"
+                    onpress={()=>{
+
+                      alert(JSON.stringify(this.state.newEvent));
+                      //TODO:: save the this.state.newEvent
+                    }}/>
                     </View>
 
                     </View>
@@ -196,6 +259,20 @@ export default class NewEvent extends React.Component{
         )
     }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    eventTypeDialog: (dialog) => dispatch(eventTypeDialog(dialog))
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    count: state.count
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewEvent)
 
 const styles = StyleSheet.create({
 

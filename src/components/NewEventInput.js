@@ -11,10 +11,12 @@ export default class NewEventInput extends React.Component{
 
             <View style={styles.container}>
 
-                <TextInput style={styles.text} 
-                placeholderTextColor={Colors.m_perpel_glass2} 
+                <TextInput style={styles.text}
+                keyboardType={this.props.keyboardType || 'numeric'} // default , email-address
+                onChangeText= {this.props.onChangeText}
+                placeholderTextColor={Colors.m_perpel_glass2}
                 placeholder={this.props.ph}></TextInput>
-            
+
             </View>
         )
     }
