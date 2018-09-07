@@ -40,7 +40,7 @@ export default class EventManager extends React.Component{
 
                     <View style={styles.new_event_btn}>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{this.props.navigation.navigate('NewEvent')}}>
 
                             <Text style={styles.text_big1}>رویداد جدید</Text>
 
@@ -56,6 +56,7 @@ export default class EventManager extends React.Component{
 
                         </View>
 
+
                         <View style={styles.evensInfo_con}>
 
                             <EventsInfoBar/>
@@ -64,13 +65,12 @@ export default class EventManager extends React.Component{
 
                     </View>
 
-                    <View style={styles.see_events_con}>
-
+                    <TouchableOpacity style={styles.see_events_con}
+                    onPress={()=>{this.props.navigation.navigate('TimeLine')}}>
+                    <View>
                         <Text style={styles.text_big1}>مشاهده برنامه ها و رویداد ها</Text>
-
-
                     </View>
-
+                    </TouchableOpacity>
 
                 </View>
 

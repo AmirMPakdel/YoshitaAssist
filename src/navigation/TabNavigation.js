@@ -28,7 +28,7 @@ export default TabNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName:'Home',
+        initialRouteName:'EventManager',
 
         animationEnabled:true,
 
