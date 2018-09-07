@@ -5,6 +5,8 @@ import EventTypeButton from '../components/EventTypeButton';
 import EventInput from '../components/EventInput';
 import NewEventMid from '../components/NewEventMid';
 import EventSubmit from '../components/EventSubmit';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 
 
 const Height = Dimensions.get('window').height;
@@ -16,6 +18,7 @@ export default class NewEvent extends React.Component{
 
         return(
 
+            <KeyboardAwareScrollView>
             <View style={styles.container}>
 
                 <View style={styles.header_con}>
@@ -48,6 +51,7 @@ export default class NewEvent extends React.Component{
                 </ImageBackground>
                 </View>
                 
+                
 
 
                 <View style={styles.middle_con}>
@@ -74,6 +78,7 @@ export default class NewEvent extends React.Component{
                 </View>
 
             </View>
+            </KeyboardAwareScrollView>
         )
     }
 }
@@ -81,8 +86,8 @@ export default class NewEvent extends React.Component{
 const styles = StyleSheet.create({
 
     container: {
-        height:'100%',
-        width:'100%',
+        height:Height,
+        width:Width,
         alignItems:'center',
         backgroundColor: Colors.Whitebackground,
     },
