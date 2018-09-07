@@ -8,12 +8,12 @@ const EventRepeatMode = {
   onceAMonth: 3
 };
 
-let today = new PersianDate([1397, 6, 16, 0, 0, 0, 0]);
-let tommorrow = new PersianDate([1397, 6, 17, 0, 0, 0, 0]);
+let dayA = new PersianDate([1397, 6, 16, 0, 0, 0, 0]);
+let dayB = new PersianDate([1397, 6, 17, 0, 0, 0, 0]);
 
 //some fake data
 const initialData = {
-  [today.unix()]: [
+  [dayA.unix()]: [
     {
       eventType: 'meeting',
       eventTitle: 'ملاقات با داوران مسابقه',
@@ -28,19 +28,19 @@ const initialData = {
       eventEarlyNotify: new PersianDate([1397, 6, 16, 13, 25, 0, 0]) // 5 minutes before the start of the event
     }
   ],
-  [tommorrow.unix()]: [
+  [dayB.unix()]: [
     {
       eventType: 'email',
       eventTitle: 'پروژه ترکیده ...',
       eventDuration: null,
       eventTimeRange: {
-        start: tommorrow
+        start: dayB
           .clone()
           .hour(22)
           .minute(10)
           .second(0)
           .millisecond(0),
-        end: tommorrow
+        end: dayB
           .clone()
           .hour(23)
           .minute(30)
@@ -57,13 +57,13 @@ const initialData = {
       eventTitle: 'تمرین فوتبال',
       eventDuration: 490,
       eventTimeRange: {
-        start: tommorrow
+        start: dayB
           .clone()
           .hour(16)
           .minute(0)
           .second(0)
           .millisecond(0),
-        end: tommorrow
+        end: dayB
           .clone()
           .hour(17)
           .minute(30)
@@ -73,7 +73,7 @@ const initialData = {
       eventNotes: ['تمرین ضربه سر', 'تمرین کردن پاس توی عمق'],
       eventDescription: null,
       eventRepeatMode: EventRepeatMode.onceAWeek,
-      eventEarlyNotify: tommorrow
+      eventEarlyNotify: dayB
         .clone()
         .hour(15)
         .minute(30)
