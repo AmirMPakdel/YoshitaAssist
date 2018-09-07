@@ -1,18 +1,18 @@
-import {createTabNavigator} from 'react-navigation';
-import Home from '../screens/Home';
+import {createStackNavigator} from 'react-navigation';
+import EventManager from '../screens/EventManager';
 import Calendar from '../screens/Calendar';
 import CheckList from '../screens/CheckList';
 import NewEvent from '../screens/NewEvent';
-import Map from '../screens/Map';
+import Home from '../screens/Home';
 import TimeLine from '../screens/TimeLine';
 import TabBar from './TabBar';
 
 
-export default TabNavigator = createTabNavigator(
-    
+export default TabNavigator = createStackNavigator(
+
     {
-        Map:{
-            screen:Map
+        EventManager:{
+            screen:EventManager
         },
 
         NewEvent:{
@@ -22,23 +22,19 @@ export default TabNavigator = createTabNavigator(
         Home:{
             screen:Home
         },
-        
+
         TimeLine:{
             screen:TimeLine
         }
     },
-    {   
-        initialRouteName:'NewEvent',
+    {
+        initialRouteName:'Home',
 
         animationEnabled:true,
-        
-        tabBarComponent:TabBar,
-
-        tabBarPosition:'bottom',
 
         navigationOptions:{
-            
+
         },
-        
+
     }
 )

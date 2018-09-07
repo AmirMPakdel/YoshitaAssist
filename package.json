@@ -19,6 +19,7 @@
     "react-native-persian-calendar-picker": "^2.2.2",
     "react-native-popup-dialog": "^0.15.0",
     "react-native-snap-carousel": "^3.7.2",
+    "react-native-sound": "^0.10.9",
     "react-native-svg": "^6.5.2",
     "react-native-svg-uri": "^1.2.3",
     "react-native-track-player": "^0.2.5",

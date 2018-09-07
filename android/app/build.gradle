@@ -137,7 +137,7 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-track-player')
+    compile project(':react-native-sound')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-svg')
     compile project(':realm')
