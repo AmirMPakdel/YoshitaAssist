@@ -1,27 +1,19 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Colors from '../Colors';
-import EventSubmit from '../components/EventSubmit';
+import ActivityItem from '../components/UI/Timeline/Activities/ActivityItem';
 
-
-export default class Map extends React.Component{
-
-    render(){
-
-        return(
-            <View style={styles.container}>
-                
-            </View>
-        )
-    }
+export default class Map extends React.Component {
+  render() {
+    return <View style={styles.container} />;
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent:'center',
-      alignItems:'center',
-      backgroundColor: Colors.Whitebackground,
-    },
-  
-  });
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.Whitebackground
+  }
+});

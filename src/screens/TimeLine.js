@@ -1,29 +1,85 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import TimeLineScroller from '../components/UI/Timeline/TimelineScroller';
 import TimeLineTopActivities from '../components/UI/Timeline/TimeLineTopActivities';
 const PersianDate = require('persian-date');
+import { connect } from 'react-redux';
 import _ from 'lodash';
+import Activities from '../components/UI/Timeline/Activities/Activities';
 
 const PAST_DAYS = 10;
-initDates = () => {
-  let dates = [];
-  for (let i = -PAST_DAYS; i < 0; i++) {
-    dates.push({ score: 0, date: new PersianDate().subtract('days', -i) });
+
+calculateScore = events => {
+  let totalActivityTimeMinute = 0;
+  for (const event of events) {
+    totalActivityTimeMinute += +event.eventDuration;
   }
 
-  dates.push({ score: 0, date: new PersianDate() });
-
-  for (let i = 1; i < 64; i++) {
-    dates.push({ score: 0, date: new PersianDate().add('days', i) });
+  if (totalActivityTimeMinute == 0) {
+    return 0;
+  } else if (totalActivityTimeMinute <= 300) {
+    return 1;
+  } else if (totalActivityTimeMinute <= 480) {
+    return 2;
+  } else {
+    return 3;
   }
-
-  return dates;
 };
 
-export default class TimeLine extends React.Component {
+class TimeLine extends React.Component {
+  // this will fetch th events for a given date and will return a object with Score and Sorted Events
+  _processDateFromDatabase = pDate => {
+    //generate the key to fetch the corresponding events
+    //fetch the events from the mockdatabase provided by redux
+    const key = new PersianDate([
+      pDate.year(),
+      pDate.month(),
+      pDate.date(),
+      0,
+      0,
+      0,
+      0
+    ]).unix();
+    const fetchedEvents = this.props.events[key];
+    if (fetchedEvents) {
+      const score = calculateScore(fetchedEvents);
+      const sortedEvents = _.sortBy(fetchedEvents, e =>
+        e.eventTimeRange.start.unix()
+      );
+
+      return {
+        score: score,
+        date: pDate,
+        events: sortedEvents
+      };
+    } else {
+      // if ther is no esaved event, return immidiatly
+      return {
+        score: 0,
+        date: pDate,
+        events: []
+      };
+    }
+  };
+
+  initDates = () => {
+    let dates = [];
+    for (let i = -PAST_DAYS; i < 0; i++) {
+      dates.push(
+        this._processDateFromDatabase(new PersianDate().subtract('days', -i))
+      );
+    }
+    dates.push(this._processDateFromDatabase(new PersianDate()));
+    for (let i = 1; i < 64; i++) {
+      dates.push(
+        this._processDateFromDatabase(new PersianDate().add('days', i))
+      );
+    }
+    return dates;
+  };
+
   state = {
-    dates: initDates(),
+    dates: this.initDates(),
     selectedDate: new PersianDate(),
     selectedIndex: PAST_DAYS,
     topActivities: [
@@ -41,29 +97,9 @@ export default class TimeLine extends React.Component {
   };
 
   // really dont know why this doesn't work !!!!
-  _onEndReachedHandler = () => {
-    // let lastDate = this.state.dates[this.state.dates.length - 1].date.clone();
-    // console.log(lastDate.format('dddd D MMMM YYYY'));
-    // const clonedDates = _.cloneDeep(this.state.dates);
-    // // const clonedDates = [];
-    // for (let i = 0; i < 31; i++) {
-    //   console.log(i);
-    //   clonedDates.push({
-    //     score: 4,
-    //     date: lastDate.add('days', 1).clone()
-    //     // date: new PersianDate()
-    //   });
-    // }
-    // console.log('Cloned State: ', clonedDates);
-    // this.setState({ dates: clonedDates });
-    // console.log('New State: ', this.state.dates);
-  };
+  _onEndReachedHandler = () => {};
 
-  componentDidMount() {
-    // for (const iterator of this.state.dates) {
-    //   console.log(iterator.format('dddd D MMMM YYYY'));
-    // }
-  }
+  componentDidMount() {}
 
   render() {
     let message = '';
@@ -79,9 +115,10 @@ export default class TimeLine extends React.Component {
       <View style={styles.container}>
         <View
           style={{
-            flexGrow: 1,
+            height: 200,
             backgroundColor: '#6d0d5d',
             width: '100%',
+
             justifyContent: 'space-evenly',
             alignItems: 'center'
           }}>
@@ -103,12 +140,12 @@ export default class TimeLine extends React.Component {
             }}>
             {message}
           </Text>
-          <View style={{ width: '100%', height: 60 }}>
+          {/* <View style={{ width: '100%', height: 60 }}>
             <TimeLineTopActivities topActivities={this.state.topActivities} />
-          </View>
+          </View> */}
         </View>
 
-        <View style={{ flexGrow: 1, justifyContent: 'center' }}>
+        <View style={{ height: 90, justifyContent: 'center' }}>
           <TimeLineScroller
             activeIndex={PAST_DAYS}
             data={this.state.dates}
@@ -116,7 +153,19 @@ export default class TimeLine extends React.Component {
             onEndReached={this._onEndReachedHandler}
           />
         </View>
-        <View style={{ flexGrow: 8, backgroundColor: '#eee', width: '100%' }} />
+        <ScrollView>
+          <View
+            style={{
+              height: '100%',
+              width: '100%',
+              paddingHorizontal: 5,
+              paddingTop: 15
+            }}>
+            <Activities
+              events={this.state.dates[this.state.selectedIndex].events}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -129,3 +178,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
+
+const mapStateToProps = newState => ({
+  events: newState.mockReducer
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(TimeLine);

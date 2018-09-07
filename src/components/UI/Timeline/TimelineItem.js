@@ -5,13 +5,14 @@ import { convertToPersianNumber } from '../../../data/PickersList';
 
 /**
  * props:
- *          score(Number): how much busy user is( from 0 to 4 )
+ *          score(Number): how much busy user is( from 0 to 3 )
  *          dayNumber(Number): ...
  */
 
 export default class TimeLineItem extends Component {
   render() {
-    const dayColor = Colors[`workHeat_${this.props.score}`];
+    const dayColor =
+      Colors[`workHeat_${this.props.score <= 3 ? this.props.score : 0}`];
     return (
       <View
         style={{
