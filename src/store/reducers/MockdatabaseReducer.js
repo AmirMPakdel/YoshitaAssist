@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/ActionTypes';
 import _ from 'lodash';
+
 const PersianDate = require('persian-date');
 const EventRepeatMode = {
   justOnce: 0,
@@ -113,7 +114,7 @@ const initialData = {
 
 export default (MockDatabaseREducer = (oldState = initialData, action) => {
   const clonedState = _.cloneDeep(oldState);
-  
+
   switch (action.type) {
     case actionTypes.ADD_EVENT:
       let key = action.keyDate;
@@ -127,7 +128,7 @@ export default (MockDatabaseREducer = (oldState = initialData, action) => {
         0
       ]).unix();
 
-      clonedState[key].push({
+      const finalEvent = {
         eventType: action.event.eventType,
         eventTitle: action.event.eventTitle,
         eventDuration: action.event.eventDuration,
@@ -148,7 +149,13 @@ export default (MockDatabaseREducer = (oldState = initialData, action) => {
           .clone()
           .second(0)
           .millisecond(0)
-      });
+      };
+
+      if (_.isEmpty(clonedState[key])) {
+        clonedState[key] = [finalEvent];
+      } else {
+        clonedState[key].push(finalEvent);
+      }
 
       break;
 
