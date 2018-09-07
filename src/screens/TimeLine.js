@@ -53,7 +53,7 @@ class TimeLine extends React.Component {
         events: sortedEvents
       };
     } else {
-      // if ther is no esaved event, return immidiatly
+      // if ther is no saved event, return immidiatly
       return {
         score: 0,
         date: pDate,
@@ -99,6 +99,7 @@ class TimeLine extends React.Component {
   // really dont know why this doesn't work !!!!
   _onEndReachedHandler = () => {};
 
+  componentDidUpdate() {}
   componentDidMount() {}
 
   render() {
