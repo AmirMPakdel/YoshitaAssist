@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import TimeLineScroller from '../components/UI/Timeline/TimelineScroller';
 import TimeLineTopActivities from '../components/UI/Timeline/TimeLineTopActivities';
 const PersianDate = require('persian-date');
@@ -140,9 +140,9 @@ class TimeLine extends React.Component {
             }}>
             {message}
           </Text>
-          <View style={{ width: '100%', height: 60 }}>
+          {/* <View style={{ width: '100%', height: 60 }}>
             <TimeLineTopActivities topActivities={this.state.topActivities} />
-          </View>
+          </View> */}
         </View>
 
         <View style={{ height: 90, justifyContent: 'center' }}>
@@ -153,17 +153,19 @@ class TimeLine extends React.Component {
             onEndReached={this._onEndReachedHandler}
           />
         </View>
-        <View
-          style={{
-            flexGrow: 8,
-            width: '100%',
-            paddingHorizontal: 5,
-            paddingTop: 15
-          }}>
-          <Activities
-            events={this.state.dates[this.state.selectedIndex].events}
-          />
-        </View>
+        <ScrollView>
+          <View
+            style={{
+              height: '100%',
+              width: '100%',
+              paddingHorizontal: 5,
+              paddingTop: 15
+            }}>
+            <Activities
+              events={this.state.dates[this.state.selectedIndex].events}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

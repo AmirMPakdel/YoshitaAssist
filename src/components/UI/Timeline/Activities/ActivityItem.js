@@ -46,7 +46,7 @@ export default class ActivityItem extends Component {
       <View
         style={{
           flexDirection: 'row',
-          marginBottom: 10
+          marginVertical: 5
         }}>
         <View
           style={{
@@ -63,18 +63,28 @@ export default class ActivityItem extends Component {
           {/* the start and finish time  */}
           <View
             style={{
-              justifyContent: 'space-around',
+              justifyContent: 'space-evenly',
               marginRight: 5,
               height: '100%'
             }}>
-            <Text style={{ fontSize: 28, color: 'rgb(98,37,88)' }}>
+            <Text
+              style={{
+                fontFamily: 'sahel',
+                fontSize: 22,
+                color: 'rgb(98,37,88)'
+              }}>
               {convertToPersianNumber(
                 `${this.props.startTime.hour()}:${this.props.startTime.minute()}`
               )}
             </Text>
 
             {this.props.endTime ? (
-              <Text style={{ fontSize: 28, color: 'rgb(98,37,88)' }}>
+              <Text
+                style={{
+                  fontFamily: 'sahel',
+                  fontSize: 22,
+                  color: 'rgb(98,37,88)'
+                }}>
                 {convertToPersianNumber(
                   `${this.props.endTime.hour()}:${this.props.endTime.minute()}`
                 )}
@@ -90,22 +100,27 @@ export default class ActivityItem extends Component {
               marginHorizontal: 15
             }}
           />
-          <View style={{ justifyContent: 'flex-start', padding: 3 }}>
+          <View style={{ justifyContent: 'space-evenly', padding: 3 }}>
             <Text
               numberOfLines={2}
               lineBreakMode="tail"
               style={{
+                fontFamily: 'sahel',
                 maxWidth: 200,
-                fontSize: 18,
-                color: 'rgb(98,37,88)',
-                fontWeight: 'bold'
+                fontSize: 20,
+                color: 'rgb(98,37,88)'
               }}>
               {this.props.title}
             </Text>
             <Text
               numberOfLines={2}
               lineBreakMode="clip"
-              style={{ fontSize: 14, color: 'rgb(98,37,88)', maxWidth: 200 }}>
+              style={{
+                fontFamily: 'sahel',
+                fontSize: 14,
+                color: 'rgb(98,37,88)',
+                maxWidth: 200
+              }}>
               {this.props.description}
             </Text>
           </View>
