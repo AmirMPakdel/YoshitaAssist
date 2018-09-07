@@ -33,9 +33,7 @@ export default class Home extends React.Component {
   componentWillUnmount() {
     clearInterval(this.intervalID);
   }
-  fadeIn =() =>{
-    
-  }
+  fadeIn = () => {};
   render() {
     return (
       <ImageBackground
@@ -53,7 +51,9 @@ export default class Home extends React.Component {
             width: '100%',
             padding: 30
           }}>
-          <TouchableNativeFeedback style={{ overflow: 'hidden' }}>
+          <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('NewEvent')}
+            style={{ overflow: 'hidden' }}>
             <View
               style={{
                 width: 65,

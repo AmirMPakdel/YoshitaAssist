@@ -1,11 +1,9 @@
 import { createStackNavigator } from 'react-navigation';
 import EventManager from '../screens/EventManager';
-import Calendar from '../screens/Calendar';
-import CheckList from '../screens/CheckList';
 import NewEvent from '../screens/NewEvent';
 import Home from '../screens/Home';
 import TimeLine from '../screens/TimeLine';
-import TabBar from './TabBar';
+import Player from '../screens/Player';
 
 export default (TabNavigator = createStackNavigator(
   {
@@ -13,6 +11,9 @@ export default (TabNavigator = createStackNavigator(
       screen: EventManager
     },
 
+    Player: {
+      screen: Player
+    },
     NewEvent: {
       screen: NewEvent
     },

@@ -239,7 +239,7 @@ class NewEvent extends React.Component {
                   <NewEventButton
                     text="انصراف"
                     onpress={() => {
-                      //TODO:: go out
+                      this.props.navigation.goBack();
                     }}
                   />
                 </View>
