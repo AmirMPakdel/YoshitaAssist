@@ -58,7 +58,7 @@ export default class ActivityItem extends Component {
             borderRadius: 40,
             flexDirection: 'row-reverse',
             alignItems: 'center',
-            width: '80%',
+            width: '75%',
             backgroundColor: '#fff'
           }}>
           {/* the start and finish time  */}
@@ -98,7 +98,7 @@ export default class ActivityItem extends Component {
               width: 2,
               height: '120%',
               backgroundColor: 'rgb(98,37,88)',
-              marginHorizontal: 15
+              marginHorizontal: 5
             }}
           />
           <View style={{ justifyContent: 'space-evenly', padding: 3 }}>
@@ -121,7 +121,7 @@ export default class ActivityItem extends Component {
                 fontFamily: 'sahel',
                 fontSize: 14,
                 color: 'rgb(98,37,88)',
-                maxWidth: 200
+                maxWidth: 170
               }}>
               {this.props.description}
             </Text>

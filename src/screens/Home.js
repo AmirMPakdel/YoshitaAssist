@@ -166,6 +166,7 @@ export default class Home extends React.Component {
               color: '#fff',
               fontSize: 22,
               marginBottom: 30,
+              fontFamily:'sahel',
               textAlign: 'center'
             }}>
             یک هفته هست ورزش نکردی
@@ -179,7 +180,8 @@ export default class Home extends React.Component {
           <View
             style={{
               marginVertical: 10,
-              width: '50%',
+              width: '42%',
+              paddingBottom:2,
               height: 40,
               borderRadius: 20,
               borderWidth: 2,
@@ -200,10 +202,10 @@ export default class Home extends React.Component {
               </View>
             </TouchableOpacity>
           </View>
-          <View style={{ width: '50%', height: 40, marginVertical: 10 }}>
+          <View style={{ width: '42%', height: 40, marginVertical: 10 }}>
             <EventTypeButton
               title="مدیریت روز"
-              onpress={() => this.props.navigation.navigate('TimeLine')}
+              onpress={() => this.props.navigation.navigate('EventManager')}
             />
           </View>
         </View>

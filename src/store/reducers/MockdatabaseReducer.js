@@ -17,7 +17,7 @@ const initialData = {
   [dayA.unix()]: [
     {
       eventType: 'meeting',
-      eventTitle: 'ملاقات با داوران مسابقه',
+      eventTitle: 'ملاقات با داورا',
       eventDuration: 5,
       eventTimeRange: {
         start: new PersianDate([1397, 6, 16, 13, 30, 0, 0]),
