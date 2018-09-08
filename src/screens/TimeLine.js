@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, View,Image,TouchableOpacity, Text, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  ScrollView
+} from 'react-native';
 import TimeLineScroller from '../components/UI/Timeline/TimelineScroller';
 import TimeLineTopActivities from '../components/UI/Timeline/TimeLineTopActivities';
 const PersianDate = require('persian-date');
@@ -70,7 +77,7 @@ class TimeLine extends React.Component {
       );
     }
     dates.push(this._processDateFromDatabase(new PersianDate()));
-    for (let i = 1; i < 64; i++) {
+    for (let i = 1; i < 30; i++) {
       dates.push(
         this._processDateFromDatabase(new PersianDate().add('days', i))
       );
@@ -123,10 +130,15 @@ class TimeLine extends React.Component {
             justifyContent: 'space-evenly',
             alignItems: 'center'
           }}>
-
-          <TouchableOpacity style={{position:'absolute', top:30, left:10}} onPress={()=>{this.props.navigation.goBack()}}>
-          <Image style={{width:32, height:32}}
-          source={require('../assets/images/back.png')}/>
+          <TouchableOpacity
+            style={{ position: 'absolute', top: 30, left: 10 }}
+            onPress={() => {
+              this.props.navigation.goBack();
+            }}>
+            <Image
+              style={{ width: 32, height: 32 }}
+              source={require('../assets/images/back.png')}
+            />
           </TouchableOpacity>
 
           <Text
