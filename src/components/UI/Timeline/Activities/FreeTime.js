@@ -7,7 +7,7 @@ export default class FreeTime extends Component {
   render() {
     let height = this.props.minute * 0.6;
     if (height < 40) {
-      height = 60;
+      height = 70;
     }
     const { hour, minute } = minuteToTime(this.props.minute);
     let time = '';

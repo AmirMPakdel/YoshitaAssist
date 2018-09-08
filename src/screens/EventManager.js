@@ -148,14 +148,14 @@ const styles = StyleSheet.create({
     width: '85%',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 40,
+    borderRadius: 60,
     marginVertical: 5,
     backgroundColor: Colors.gray_glass //"rgba(65, 54, 94, 0.85)"
   },
 
   cirlc_con: {
-    height: '48%',
-    width: '31.5%',
+    height: 100,
+    width: 100,
     elevation: 20,
     borderWidth: 2,
     borderColor: 'rgba(1,1,1,0.2)',
