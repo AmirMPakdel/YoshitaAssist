@@ -3,8 +3,7 @@ import {StyleSheet,TouchableOpacity,Image, View, Text, ImageBackground} from 're
 import Colors from '../Colors';
 import EventsInfoBar from '../components/EventsInfoBar';
 import SearchBar from '../components/SearchBar';
-import Sound from 'react-native-sound'
-import MusicPlayer from '../musicPlayer/MusicPlayer';
+import Sound from 'react-native-sound';
 
 export default class EventManager extends React.Component{
 
@@ -12,18 +11,11 @@ export default class EventManager extends React.Component{
 
       super(props);
 
-      const link = "https://dl.last.fm/static/1536358714/131211148/0ad21ff38ea65061ac582ace4381264810a522cbe7daa8cb84d88e9cec3cfeb5/Death+Grips+-+Get+Got.mp3"
-      /*const sound = new Sound(link, null, (error) => {
-      if (error) {
-        alert('player error')
-      }});*/
-
-      // play when loaded
-      //sound.play();
 
     }
 
     render(){
+
 
         return(
             <ImageBackground style= {styles.bg}source={require('../assets/images/event_mg.png')}>
